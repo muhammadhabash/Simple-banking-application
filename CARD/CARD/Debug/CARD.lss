@@ -1,0 +1,1928 @@
+
+CARD.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000ad0  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         000000b2  00800060  00000ad0  00000b64  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000000d  00800112  00800112  00000c16  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000c16  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000c48  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000320  00000000  00000000  00000c84  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   0000268d  00000000  00000000  00000fa4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000e06  00000000  00000000  00003631  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00001917  00000000  00000000  00004437  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000740  00000000  00000000  00005d50  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000f02  00000000  00000000  00006490  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00001f89  00000000  00000000  00007392  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000290  00000000  00000000  0000931b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 49 00 	jmp	0x92	; 0x92 <__vector_1>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 a4 03 	jmp	0x748	; 0x748 <__vector_11>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 87 04 	jmp	0x90e	; 0x90e <__vector_13>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 8d 04 	jmp	0x91a	; 0x91a <__vector_15>
+  40:	0c 94 78 01 	jmp	0x2f0	; 0x2f0 <__vector_16>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	11 e0       	ldi	r17, 0x01	; 1
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e0 ed       	ldi	r30, 0xD0	; 208
+  68:	fa e0       	ldi	r31, 0x0A	; 10
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a2 31       	cpi	r26, 0x12	; 18
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	21 e0       	ldi	r18, 0x01	; 1
+  78:	a2 e1       	ldi	r26, 0x12	; 18
+  7a:	b1 e0       	ldi	r27, 0x01	; 1
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	af 31       	cpi	r26, 0x1F	; 31
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 60 00 	call	0xc0	; 0xc0 <main>
+  8a:	0c 94 66 05 	jmp	0xacc	; 0xacc <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <__vector_1>:
+#include <string.h>
+
+volatile uint8_t u8_counts        = 0;
+void __vector_1(void) __attribute__((signal));
+void __vector_1(void)
+{
+  92:	1f 92       	push	r1
+  94:	0f 92       	push	r0
+  96:	0f b6       	in	r0, 0x3f	; 63
+  98:	0f 92       	push	r0
+  9a:	11 24       	eor	r1, r1
+  9c:	8f 93       	push	r24
+  9e:	9f 93       	push	r25
+	Ru8_PORTB ^= 0x01;
+  a0:	98 b3       	in	r25, 0x18	; 24
+  a2:	81 e0       	ldi	r24, 0x01	; 1
+  a4:	89 27       	eor	r24, r25
+  a6:	88 bb       	out	0x18, r24	; 24
+	u8_counts++;
+  a8:	80 91 12 01 	lds	r24, 0x0112	; 0x800112 <__data_end>
+  ac:	8f 5f       	subi	r24, 0xFF	; 255
+  ae:	80 93 12 01 	sts	0x0112, r24	; 0x800112 <__data_end>
+}
+  b2:	9f 91       	pop	r25
+  b4:	8f 91       	pop	r24
+  b6:	0f 90       	pop	r0
+  b8:	0f be       	out	0x3f, r0	; 63
+  ba:	0f 90       	pop	r0
+  bc:	1f 90       	pop	r1
+  be:	18 95       	reti
+
+000000c0 <main>:
+int main(void)
+{
+  c0:	cf 93       	push	r28
+  c2:	df 93       	push	r29
+  c4:	cd b7       	in	r28, 0x3d	; 61
+  c6:	de b7       	in	r29, 0x3e	; 62
+  c8:	67 97       	sbiw	r28, 0x17	; 23
+  ca:	0f b6       	in	r0, 0x3f	; 63
+  cc:	f8 94       	cli
+  ce:	de bf       	out	0x3e, r29	; 62
+  d0:	0f be       	out	0x3f, r0	; 63
+  d2:	cd bf       	out	0x3d, r28	; 61
+	uint8_t u8_panNotValid            = TRUE;
+	uint8_t u8_pinNotValid            = TRUE;
+	uint8_t u8_noResponse             = TRUE;
+	uint8_t u8_adminAccessed          = FALSE; 
+	uint8_t u8_arrIndex               = u8_INTIAL_VAL;
+	uint8_t u8_panSize                = u8_INTIAL_VAL;
+  d4:	19 82       	std	Y+1, r1	; 0x01
+	uint8_t pu8_cardPIN[u8_PIN_SIZE];
+	uint8_t pu8_command[10];
+	uint8_t pu8_neededData[15];
+	uint8_t pu8_cardHolderName[10];
+	uint8_t pu8_cardPAN[u8_PAN_MAX_SIZE];
+	Ru8_DDRB |= 0x01;
+  d6:	87 b3       	in	r24, 0x17	; 23
+  d8:	81 60       	ori	r24, 0x01	; 1
+  da:	87 bb       	out	0x17, r24	; 23
+	CARD_init();
+  dc:	0e 94 98 04 	call	0x930	; 0x930 <CARD_init>
+	
+	cardMode_t u8_mode = ADMIN;
+  e0:	80 e0       	ldi	r24, 0x00	; 0
+
+	while(1)
+	{
+		
+		switch(u8_mode)
+  e2:	88 23       	and	r24, r24
+  e4:	19 f0       	breq	.+6      	; 0xec <main+0x2c>
+  e6:	81 30       	cpi	r24, 0x01	; 1
+  e8:	21 f1       	breq	.+72     	; 0x132 <main+0x72>
+  ea:	fb cf       	rjmp	.-10     	; 0xe2 <main+0x22>
+		{
+			case ADMIN :
+			TERMINAL_display(PROG_MODE_STR);
+  ec:	8b e6       	ldi	r24, 0x6B	; 107
+  ee:	90 e0       	ldi	r25, 0x00	; 0
+  f0:	0e 94 ab 04 	call	0x956	; 0x956 <TERMINAL_display>
+			CARD_voidCheckPanValidity(pu8_cardPAN, &u8_panSize);	
+  f4:	be 01       	movw	r22, r28
+  f6:	6f 5f       	subi	r22, 0xFF	; 255
+  f8:	7f 4f       	sbci	r23, 0xFF	; 255
+  fa:	ce 01       	movw	r24, r28
+  fc:	07 96       	adiw	r24, 0x07	; 7
+  fe:	0e 94 b4 04 	call	0x968	; 0x968 <CARD_voidCheckPanValidity>
+			EEPROM_u8WriteNeededPartBlock(u8_PAN_PAGE_NUM,u8_PAN_BYTE_NUM,pu8_cardPAN,u8_panSize);
+ 102:	29 81       	ldd	r18, Y+1	; 0x01
+ 104:	ae 01       	movw	r20, r28
+ 106:	49 5f       	subi	r20, 0xF9	; 249
+ 108:	5f 4f       	sbci	r21, 0xFF	; 255
+ 10a:	60 e0       	ldi	r22, 0x00	; 0
+ 10c:	80 e0       	ldi	r24, 0x00	; 0
+ 10e:	90 e0       	ldi	r25, 0x00	; 0
+ 110:	0e 94 cf 00 	call	0x19e	; 0x19e <EEPROM_u8WriteNeededPartBlock>
+			CARD_voidCheckPinValidity(pu8_cardPIN);
+ 114:	ce 01       	movw	r24, r28
+ 116:	02 96       	adiw	r24, 0x02	; 2
+ 118:	0e 94 fb 04 	call	0x9f6	; 0x9f6 <CARD_voidCheckPinValidity>
+			EEPROM_u8WriteNeededPartBlock(u8_PIN_PAGE_NUM,u8_PIN_BYTE_NUM,pu8_cardPIN,u8_PIN_SIZE);
+ 11c:	25 e0       	ldi	r18, 0x05	; 5
+ 11e:	ae 01       	movw	r20, r28
+ 120:	4e 5f       	subi	r20, 0xFE	; 254
+ 122:	5f 4f       	sbci	r21, 0xFF	; 255
+ 124:	64 e1       	ldi	r22, 0x14	; 20
+ 126:	80 e0       	ldi	r24, 0x00	; 0
+ 128:	90 e0       	ldi	r25, 0x00	; 0
+ 12a:	0e 94 cf 00 	call	0x19e	; 0x19e <EEPROM_u8WriteNeededPartBlock>
+			u8_mode = USER;
+ 12e:	81 e0       	ldi	r24, 0x01	; 1
+			break;
+ 130:	d8 cf       	rjmp	.-80     	; 0xe2 <main+0x22>
+			
+			case USER :
+			TERMINAL_display("USER MODE\r");
+ 132:	86 e8       	ldi	r24, 0x86	; 134
+ 134:	90 e0       	ldi	r25, 0x00	; 0
+ 136:	0e 94 ab 04 	call	0x956	; 0x956 <TERMINAL_display>
+			EEPROM_u8ReadNeededPartBlock(u8_PAN_PAGE_NUM, u8_PAN_BYTE_NUM, pu8_cardPAN, u8_panSize);
+ 13a:	29 81       	ldd	r18, Y+1	; 0x01
+ 13c:	ae 01       	movw	r20, r28
+ 13e:	49 5f       	subi	r20, 0xF9	; 249
+ 140:	5f 4f       	sbci	r21, 0xFF	; 255
+ 142:	60 e0       	ldi	r22, 0x00	; 0
+ 144:	80 e0       	ldi	r24, 0x00	; 0
+ 146:	90 e0       	ldi	r25, 0x00	; 0
+ 148:	0e 94 18 01 	call	0x230	; 0x230 <EEPROM_u8ReadNeededPartBlock>
+			while(DIO_GetPinValue(PORTD,PIN3) != HIGH);
+ 14c:	63 e0       	ldi	r22, 0x03	; 3
+ 14e:	83 e0       	ldi	r24, 0x03	; 3
+ 150:	0e 94 b5 02 	call	0x56a	; 0x56a <DIO_GetPinValue>
+ 154:	81 30       	cpi	r24, 0x01	; 1
+ 156:	d1 f7       	brne	.-12     	; 0x14c <main+0x8c>
+			SPI_masterTransmitString(pu8_cardPAN);
+ 158:	ce 01       	movw	r24, r28
+ 15a:	07 96       	adiw	r24, 0x07	; 7
+ 15c:	0e 94 8d 03 	call	0x71a	; 0x71a <SPI_masterTransmitString>
+			TERMINAL_display("hi");
+ 160:	81 e9       	ldi	r24, 0x91	; 145
+ 162:	90 e0       	ldi	r25, 0x00	; 0
+ 164:	0e 94 ab 04 	call	0x956	; 0x956 <TERMINAL_display>
+			//u8_statusCode = SPI_slaveReceiveByte();
+			
+			//if(u8_statusCode == u8_PAN_VALID)
+			//{ 
+				EEPROM_u8ReadNeededPartBlock(u8_PIN_PAGE_NUM, u8_PIN_BYTE_NUM, pu8_cardPIN, u8_PIN_SIZE);
+ 168:	25 e0       	ldi	r18, 0x05	; 5
+ 16a:	ae 01       	movw	r20, r28
+ 16c:	4e 5f       	subi	r20, 0xFE	; 254
+ 16e:	5f 4f       	sbci	r21, 0xFF	; 255
+ 170:	64 e1       	ldi	r22, 0x14	; 20
+ 172:	80 e0       	ldi	r24, 0x00	; 0
+ 174:	90 e0       	ldi	r25, 0x00	; 0
+ 176:	0e 94 18 01 	call	0x230	; 0x230 <EEPROM_u8ReadNeededPartBlock>
+			    while(DIO_GetPinValue(PORTD,PIN3) != HIGH);
+ 17a:	63 e0       	ldi	r22, 0x03	; 3
+ 17c:	83 e0       	ldi	r24, 0x03	; 3
+ 17e:	0e 94 b5 02 	call	0x56a	; 0x56a <DIO_GetPinValue>
+ 182:	81 30       	cpi	r24, 0x01	; 1
+ 184:	d1 f7       	brne	.-12     	; 0x17a <main+0xba>
+				SPI_masterTransmitString(pu8_cardPIN);
+ 186:	ce 01       	movw	r24, r28
+ 188:	02 96       	adiw	r24, 0x02	; 2
+ 18a:	0e 94 8d 03 	call	0x71a	; 0x71a <SPI_masterTransmitString>
+				//u8_statusCode = SPI_slaveReceiveByte();
+				
+				//if(u8_statusCode == u8_PIN_VALID)
+				//{
+					//u8_statusCode = SPI_slaveReceiveByte();
+					u8_counts = u8_INTIAL_VAL;
+ 18e:	10 92 12 01 	sts	0x0112, r1	; 0x800112 <__data_end>
+					u8_mode = CARD_u8ModeSelection();
+ 192:	0e 94 3b 05 	call	0xa76	; 0xa76 <CARD_u8ModeSelection>
+			//}
+			//else if (u8_statusCode == u8_PAN_INVALID)
+			//{
+				//u8_mode = CARD_u8ModeSelection();
+			//}
+			break;
+ 196:	a5 cf       	rjmp	.-182    	; 0xe2 <main+0x22>
+
+00000198 <EEPROM_voidInit>:
+	else 
+	{
+		u8_ErrorInArg = u8_EEPROM_ARG_ERROR ; 
+	}
+	return u8_ErrorInArg ; 
+}
+ 198:	0e 94 e3 02 	call	0x5c6	; 0x5c6 <I2C_masterInit>
+ 19c:	08 95       	ret
+
+0000019e <EEPROM_u8WriteNeededPartBlock>:
+ 19e:	ef 92       	push	r14
+ 1a0:	ff 92       	push	r15
+ 1a2:	0f 93       	push	r16
+ 1a4:	1f 93       	push	r17
+ 1a6:	cf 93       	push	r28
+ 1a8:	df 93       	push	r29
+ 1aa:	e2 2f       	mov	r30, r18
+ 1ac:	f0 e0       	ldi	r31, 0x00	; 0
+ 1ae:	e6 0f       	add	r30, r22
+ 1b0:	f1 1d       	adc	r31, r1
+ 1b2:	e0 34       	cpi	r30, 0x40	; 64
+ 1b4:	f1 05       	cpc	r31, r1
+ 1b6:	84 f5       	brge	.+96     	; 0x218 <EEPROM_u8WriteNeededPartBlock+0x7a>
+ 1b8:	81 15       	cp	r24, r1
+ 1ba:	32 e0       	ldi	r19, 0x02	; 2
+ 1bc:	93 07       	cpc	r25, r19
+ 1be:	70 f5       	brcc	.+92     	; 0x21c <EEPROM_u8WriteNeededPartBlock+0x7e>
+ 1c0:	41 15       	cp	r20, r1
+ 1c2:	51 05       	cpc	r21, r1
+ 1c4:	69 f1       	breq	.+90     	; 0x220 <EEPROM_u8WriteNeededPartBlock+0x82>
+ 1c6:	d2 2f       	mov	r29, r18
+ 1c8:	8a 01       	movw	r16, r20
+ 1ca:	c6 2f       	mov	r28, r22
+ 1cc:	7c 01       	movw	r14, r24
+ 1ce:	0e 94 e7 02 	call	0x5ce	; 0x5ce <I2C_masterStart>
+ 1d2:	80 e5       	ldi	r24, 0x50	; 80
+ 1d4:	0e 94 fc 02 	call	0x5f8	; 0x5f8 <I2C_masterWriteToAddress>
+ 1d8:	c7 01       	movw	r24, r14
+ 1da:	96 95       	lsr	r25
+ 1dc:	87 95       	ror	r24
+ 1de:	96 95       	lsr	r25
+ 1e0:	87 95       	ror	r24
+ 1e2:	0e 94 2a 03 	call	0x654	; 0x654 <I2C_masterWriteData>
+ 1e6:	8e 2d       	mov	r24, r14
+ 1e8:	82 95       	swap	r24
+ 1ea:	88 0f       	add	r24, r24
+ 1ec:	88 0f       	add	r24, r24
+ 1ee:	80 7c       	andi	r24, 0xC0	; 192
+ 1f0:	8c 2b       	or	r24, r28
+ 1f2:	0e 94 2a 03 	call	0x654	; 0x654 <I2C_masterWriteData>
+ 1f6:	c0 e0       	ldi	r28, 0x00	; 0
+ 1f8:	09 c0       	rjmp	.+18     	; 0x20c <EEPROM_u8WriteNeededPartBlock+0x6e>
+ 1fa:	f8 01       	movw	r30, r16
+ 1fc:	ec 0f       	add	r30, r28
+ 1fe:	f1 1d       	adc	r31, r1
+ 200:	80 81       	ld	r24, Z
+ 202:	88 23       	and	r24, r24
+ 204:	29 f0       	breq	.+10     	; 0x210 <EEPROM_u8WriteNeededPartBlock+0x72>
+ 206:	0e 94 2a 03 	call	0x654	; 0x654 <I2C_masterWriteData>
+ 20a:	cf 5f       	subi	r28, 0xFF	; 255
+ 20c:	cd 17       	cp	r28, r29
+ 20e:	a8 f3       	brcs	.-22     	; 0x1fa <EEPROM_u8WriteNeededPartBlock+0x5c>
+ 210:	0e 94 4b 03 	call	0x696	; 0x696 <I2C_masterStop>
+ 214:	87 e9       	ldi	r24, 0x97	; 151
+ 216:	05 c0       	rjmp	.+10     	; 0x222 <EEPROM_u8WriteNeededPartBlock+0x84>
+ 218:	86 e9       	ldi	r24, 0x96	; 150
+ 21a:	03 c0       	rjmp	.+6      	; 0x222 <EEPROM_u8WriteNeededPartBlock+0x84>
+ 21c:	86 e9       	ldi	r24, 0x96	; 150
+ 21e:	01 c0       	rjmp	.+2      	; 0x222 <EEPROM_u8WriteNeededPartBlock+0x84>
+ 220:	86 e9       	ldi	r24, 0x96	; 150
+ 222:	df 91       	pop	r29
+ 224:	cf 91       	pop	r28
+ 226:	1f 91       	pop	r17
+ 228:	0f 91       	pop	r16
+ 22a:	ff 90       	pop	r15
+ 22c:	ef 90       	pop	r14
+ 22e:	08 95       	ret
+
+00000230 <EEPROM_u8ReadNeededPartBlock>:
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+uint8_t EEPROM_u8ReadNeededPartBlock(uint16_t u16_PageNum,uint8_t u8_ByteNum,uint8_t* pu8_ArrWantedToRead,uint8_t u8_ArrSize)
+{
+ 230:	cf 92       	push	r12
+ 232:	df 92       	push	r13
+ 234:	ef 92       	push	r14
+ 236:	ff 92       	push	r15
+ 238:	0f 93       	push	r16
+ 23a:	1f 93       	push	r17
+ 23c:	cf 93       	push	r28
+ 23e:	df 93       	push	r29
+	uint8_t u8_PageAdd = u8_EEPROM_INTIAL_VAL ; 
+	uint8_t u8_ArrIndex = u8_EEPROM_INTIAL_VAL ;
+	uint8_t u8_ErrorInArg = u8_EEPROM_NO_ARG_ERROR ; 
+	if(((u8_EEPROM_MAX_BYTE_ADDRESS-u8_ByteNum)>=u8_ArrSize)  && u16_PageNum<u16_EEPROM_MAX_PAGE_ADDRESS && pu8_ArrWantedToRead!=NULL_POINTER )
+ 240:	e0 e4       	ldi	r30, 0x40	; 64
+ 242:	f0 e0       	ldi	r31, 0x00	; 0
+ 244:	e6 1b       	sub	r30, r22
+ 246:	f1 09       	sbc	r31, r1
+ 248:	02 2f       	mov	r16, r18
+ 24a:	10 e0       	ldi	r17, 0x00	; 0
+ 24c:	e0 17       	cp	r30, r16
+ 24e:	f1 07       	cpc	r31, r17
+ 250:	0c f4       	brge	.+2      	; 0x254 <EEPROM_u8ReadNeededPartBlock+0x24>
+ 252:	40 c0       	rjmp	.+128    	; 0x2d4 <EEPROM_u8ReadNeededPartBlock+0xa4>
+ 254:	81 15       	cp	r24, r1
+ 256:	22 e0       	ldi	r18, 0x02	; 2
+ 258:	92 07       	cpc	r25, r18
+ 25a:	f0 f5       	brcc	.+124    	; 0x2d8 <EEPROM_u8ReadNeededPartBlock+0xa8>
+ 25c:	41 15       	cp	r20, r1
+ 25e:	51 05       	cpc	r21, r1
+ 260:	e9 f1       	breq	.+122    	; 0x2dc <EEPROM_u8ReadNeededPartBlock+0xac>
+ 262:	7a 01       	movw	r14, r20
+ 264:	c6 2f       	mov	r28, r22
+ 266:	6c 01       	movw	r12, r24
+	{
+		
+		I2C_masterStart();
+ 268:	0e 94 e7 02 	call	0x5ce	; 0x5ce <I2C_masterStart>
+		I2C_masterWriteToAddress(u8_EEPROM_DEVICE_ADD); 
+ 26c:	80 e5       	ldi	r24, 0x50	; 80
+ 26e:	0e 94 fc 02 	call	0x5f8	; 0x5f8 <I2C_masterWriteToAddress>
+		u8_PageAdd = (uint8_t)(u16_PageNum>>u8_EEPROM_TAKE_7HSB_OF_PAGE_ADD) ; 
+ 272:	c6 01       	movw	r24, r12
+ 274:	96 95       	lsr	r25
+ 276:	87 95       	ror	r24
+ 278:	96 95       	lsr	r25
+ 27a:	87 95       	ror	r24
+		I2C_masterWriteData(u8_PageAdd) ;
+ 27c:	0e 94 2a 03 	call	0x654	; 0x654 <I2C_masterWriteData>
+		u8_PageAdd = (uint8_t)((u16_PageNum<<u8_EEPROM_REMOVE_SENT_PAGE_ADD)>>u8_EEPROM_MAKE_REMAIN_ADD_PART_IN_HSB);
+ 280:	8c 2d       	mov	r24, r12
+ 282:	82 95       	swap	r24
+ 284:	88 0f       	add	r24, r24
+ 286:	88 0f       	add	r24, r24
+ 288:	80 7c       	andi	r24, 0xC0	; 192
+		u8_ByteNum|=u8_PageAdd ; 
+		I2C_masterWriteData(u8_ByteNum) ;
+ 28a:	8c 2b       	or	r24, r28
+ 28c:	0e 94 2a 03 	call	0x654	; 0x654 <I2C_masterWriteData>
+		I2C_repeatedStart();
+ 290:	0e 94 f2 02 	call	0x5e4	; 0x5e4 <I2C_repeatedStart>
+		I2C_masterReadFromAddress(u8_EEPROM_DEVICE_ADD) ;
+ 294:	80 e5       	ldi	r24, 0x50	; 80
+ 296:	0e 94 11 03 	call	0x622	; 0x622 <I2C_masterReadFromAddress>
+		for(u8_ArrIndex= u8_EEPROM_INTIAL_VAL;u8_ArrIndex<(u8_ArrSize - u8_EEPROM_LAST);u8_ArrIndex++)
+ 29a:	c0 e0       	ldi	r28, 0x00	; 0
+ 29c:	08 c0       	rjmp	.+16     	; 0x2ae <EEPROM_u8ReadNeededPartBlock+0x7e>
+		{
+			
+			pu8_ArrWantedToRead[u8_ArrIndex] = I2C_masterReadData();
+ 29e:	67 01       	movw	r12, r14
+ 2a0:	cc 0e       	add	r12, r28
+ 2a2:	d1 1c       	adc	r13, r1
+ 2a4:	0e 94 35 03 	call	0x66a	; 0x66a <I2C_masterReadData>
+ 2a8:	f6 01       	movw	r30, r12
+ 2aa:	80 83       	st	Z, r24
+		u8_PageAdd = (uint8_t)((u16_PageNum<<u8_EEPROM_REMOVE_SENT_PAGE_ADD)>>u8_EEPROM_MAKE_REMAIN_ADD_PART_IN_HSB);
+		u8_ByteNum|=u8_PageAdd ; 
+		I2C_masterWriteData(u8_ByteNum) ;
+		I2C_repeatedStart();
+		I2C_masterReadFromAddress(u8_EEPROM_DEVICE_ADD) ;
+		for(u8_ArrIndex= u8_EEPROM_INTIAL_VAL;u8_ArrIndex<(u8_ArrSize - u8_EEPROM_LAST);u8_ArrIndex++)
+ 2ac:	cf 5f       	subi	r28, 0xFF	; 255
+ 2ae:	8c 2f       	mov	r24, r28
+ 2b0:	90 e0       	ldi	r25, 0x00	; 0
+ 2b2:	98 01       	movw	r18, r16
+ 2b4:	22 50       	subi	r18, 0x02	; 2
+ 2b6:	31 09       	sbc	r19, r1
+ 2b8:	82 17       	cp	r24, r18
+ 2ba:	93 07       	cpc	r25, r19
+ 2bc:	84 f3       	brlt	.-32     	; 0x29e <EEPROM_u8ReadNeededPartBlock+0x6e>
+			{
+				break;
+			}*/
+		}
+		
+		pu8_ArrWantedToRead[u8_ArrIndex] = I2C_masterReadFinalData();
+ 2be:	c7 01       	movw	r24, r14
+ 2c0:	8c 0f       	add	r24, r28
+ 2c2:	91 1d       	adc	r25, r1
+ 2c4:	ec 01       	movw	r28, r24
+ 2c6:	0e 94 40 03 	call	0x680	; 0x680 <I2C_masterReadFinalData>
+ 2ca:	88 83       	st	Y, r24
+		I2C_masterStop();
+ 2cc:	0e 94 4b 03 	call	0x696	; 0x696 <I2C_masterStop>
+
+uint8_t EEPROM_u8ReadNeededPartBlock(uint16_t u16_PageNum,uint8_t u8_ByteNum,uint8_t* pu8_ArrWantedToRead,uint8_t u8_ArrSize)
+{
+	uint8_t u8_PageAdd = u8_EEPROM_INTIAL_VAL ; 
+	uint8_t u8_ArrIndex = u8_EEPROM_INTIAL_VAL ;
+	uint8_t u8_ErrorInArg = u8_EEPROM_NO_ARG_ERROR ; 
+ 2d0:	87 e9       	ldi	r24, 0x97	; 151
+				break;
+			}*/
+		}
+		
+		pu8_ArrWantedToRead[u8_ArrIndex] = I2C_masterReadFinalData();
+		I2C_masterStop();
+ 2d2:	05 c0       	rjmp	.+10     	; 0x2de <EEPROM_u8ReadNeededPartBlock+0xae>
+		
+	}
+	else 
+	{
+		u8_ErrorInArg = u8_EEPROM_ARG_ERROR ; 
+ 2d4:	86 e9       	ldi	r24, 0x96	; 150
+ 2d6:	03 c0       	rjmp	.+6      	; 0x2de <EEPROM_u8ReadNeededPartBlock+0xae>
+ 2d8:	86 e9       	ldi	r24, 0x96	; 150
+ 2da:	01 c0       	rjmp	.+2      	; 0x2de <EEPROM_u8ReadNeededPartBlock+0xae>
+ 2dc:	86 e9       	ldi	r24, 0x96	; 150
+	}
+	return u8_ErrorInArg ; 
+}
+ 2de:	df 91       	pop	r29
+ 2e0:	cf 91       	pop	r28
+ 2e2:	1f 91       	pop	r17
+ 2e4:	0f 91       	pop	r16
+ 2e6:	ff 90       	pop	r15
+ 2e8:	ef 90       	pop	r14
+ 2ea:	df 90       	pop	r13
+ 2ec:	cf 90       	pop	r12
+ 2ee:	08 95       	ret
+
+000002f0 <__vector_16>:
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void __vector_16 (void)      __attribute__((signal));
+void __vector_16 (void)
+{
+ 2f0:	1f 92       	push	r1
+ 2f2:	0f 92       	push	r0
+ 2f4:	0f b6       	in	r0, 0x3f	; 63
+ 2f6:	0f 92       	push	r0
+ 2f8:	11 24       	eor	r1, r1
+ 2fa:	2f 93       	push	r18
+ 2fc:	3f 93       	push	r19
+ 2fe:	4f 93       	push	r20
+ 300:	5f 93       	push	r21
+ 302:	6f 93       	push	r22
+ 304:	7f 93       	push	r23
+ 306:	8f 93       	push	r24
+ 308:	9f 93       	push	r25
+ 30a:	af 93       	push	r26
+ 30c:	bf 93       	push	r27
+ 30e:	ef 93       	push	r30
+ 310:	ff 93       	push	r31
+	if(ADCSetCallBackISR!=NULL_POINTER)
+ 312:	e0 91 13 01 	lds	r30, 0x0113	; 0x800113 <ADCSetCallBackISR>
+ 316:	f0 91 14 01 	lds	r31, 0x0114	; 0x800114 <ADCSetCallBackISR+0x1>
+ 31a:	30 97       	sbiw	r30, 0x00	; 0
+ 31c:	09 f0       	breq	.+2      	; 0x320 <__vector_16+0x30>
+	{
+		ADCSetCallBackISR() ;
+ 31e:	09 95       	icall
+	}
+	else 
+	{
+		//do nothing
+	}
+ 320:	ff 91       	pop	r31
+ 322:	ef 91       	pop	r30
+ 324:	bf 91       	pop	r27
+ 326:	af 91       	pop	r26
+ 328:	9f 91       	pop	r25
+ 32a:	8f 91       	pop	r24
+ 32c:	7f 91       	pop	r23
+ 32e:	6f 91       	pop	r22
+ 330:	5f 91       	pop	r21
+ 332:	4f 91       	pop	r20
+ 334:	3f 91       	pop	r19
+ 336:	2f 91       	pop	r18
+ 338:	0f 90       	pop	r0
+ 33a:	0f be       	out	0x3f, r0	; 63
+ 33c:	0f 90       	pop	r0
+ 33e:	1f 90       	pop	r1
+ 340:	18 95       	reti
+
+00000342 <DIO_SetPinDirection>:
+		case PORTD: PORTD_REG=VALUE;break;
+		default:au8_errorstate = DIO_CHOISE_NOT_FOUND;//error
+			break;
+	}//switch
+	return au8_errorstate;
+}//function
+ 342:	81 30       	cpi	r24, 0x01	; 1
+ 344:	31 f1       	breq	.+76     	; 0x392 <DIO_SetPinDirection+0x50>
+ 346:	38 f0       	brcs	.+14     	; 0x356 <DIO_SetPinDirection+0x14>
+ 348:	82 30       	cpi	r24, 0x02	; 2
+ 34a:	09 f4       	brne	.+2      	; 0x34e <DIO_SetPinDirection+0xc>
+ 34c:	40 c0       	rjmp	.+128    	; 0x3ce <DIO_SetPinDirection+0x8c>
+ 34e:	83 30       	cpi	r24, 0x03	; 3
+ 350:	09 f4       	brne	.+2      	; 0x354 <DIO_SetPinDirection+0x12>
+ 352:	5a c0       	rjmp	.+180    	; 0x408 <__EEPROM_REGION_LENGTH__+0x8>
+ 354:	76 c0       	rjmp	.+236    	; 0x442 <__EEPROM_REGION_LENGTH__+0x42>
+ 356:	41 11       	cpse	r20, r1
+ 358:	0d c0       	rjmp	.+26     	; 0x374 <DIO_SetPinDirection+0x32>
+ 35a:	81 e0       	ldi	r24, 0x01	; 1
+ 35c:	90 e0       	ldi	r25, 0x00	; 0
+ 35e:	02 c0       	rjmp	.+4      	; 0x364 <DIO_SetPinDirection+0x22>
+ 360:	88 0f       	add	r24, r24
+ 362:	99 1f       	adc	r25, r25
+ 364:	6a 95       	dec	r22
+ 366:	e2 f7       	brpl	.-8      	; 0x360 <DIO_SetPinDirection+0x1e>
+ 368:	80 95       	com	r24
+ 36a:	9a b3       	in	r25, 0x1a	; 26
+ 36c:	89 23       	and	r24, r25
+ 36e:	8a bb       	out	0x1a, r24	; 26
+ 370:	84 e0       	ldi	r24, 0x04	; 4
+ 372:	08 95       	ret
+ 374:	41 30       	cpi	r20, 0x01	; 1
+ 376:	09 f0       	breq	.+2      	; 0x37a <DIO_SetPinDirection+0x38>
+ 378:	66 c0       	rjmp	.+204    	; 0x446 <__EEPROM_REGION_LENGTH__+0x46>
+ 37a:	81 e0       	ldi	r24, 0x01	; 1
+ 37c:	90 e0       	ldi	r25, 0x00	; 0
+ 37e:	02 c0       	rjmp	.+4      	; 0x384 <DIO_SetPinDirection+0x42>
+ 380:	88 0f       	add	r24, r24
+ 382:	99 1f       	adc	r25, r25
+ 384:	6a 95       	dec	r22
+ 386:	e2 f7       	brpl	.-8      	; 0x380 <DIO_SetPinDirection+0x3e>
+ 388:	9a b3       	in	r25, 0x1a	; 26
+ 38a:	89 2b       	or	r24, r25
+ 38c:	8a bb       	out	0x1a, r24	; 26
+ 38e:	84 e0       	ldi	r24, 0x04	; 4
+ 390:	08 95       	ret
+ 392:	41 11       	cpse	r20, r1
+ 394:	0d c0       	rjmp	.+26     	; 0x3b0 <DIO_SetPinDirection+0x6e>
+ 396:	81 e0       	ldi	r24, 0x01	; 1
+ 398:	90 e0       	ldi	r25, 0x00	; 0
+ 39a:	02 c0       	rjmp	.+4      	; 0x3a0 <DIO_SetPinDirection+0x5e>
+ 39c:	88 0f       	add	r24, r24
+ 39e:	99 1f       	adc	r25, r25
+ 3a0:	6a 95       	dec	r22
+ 3a2:	e2 f7       	brpl	.-8      	; 0x39c <DIO_SetPinDirection+0x5a>
+ 3a4:	80 95       	com	r24
+ 3a6:	97 b3       	in	r25, 0x17	; 23
+ 3a8:	89 23       	and	r24, r25
+ 3aa:	87 bb       	out	0x17, r24	; 23
+ 3ac:	84 e0       	ldi	r24, 0x04	; 4
+ 3ae:	08 95       	ret
+ 3b0:	41 30       	cpi	r20, 0x01	; 1
+ 3b2:	09 f0       	breq	.+2      	; 0x3b6 <DIO_SetPinDirection+0x74>
+ 3b4:	4a c0       	rjmp	.+148    	; 0x44a <__EEPROM_REGION_LENGTH__+0x4a>
+ 3b6:	81 e0       	ldi	r24, 0x01	; 1
+ 3b8:	90 e0       	ldi	r25, 0x00	; 0
+ 3ba:	02 c0       	rjmp	.+4      	; 0x3c0 <DIO_SetPinDirection+0x7e>
+ 3bc:	88 0f       	add	r24, r24
+ 3be:	99 1f       	adc	r25, r25
+ 3c0:	6a 95       	dec	r22
+ 3c2:	e2 f7       	brpl	.-8      	; 0x3bc <DIO_SetPinDirection+0x7a>
+ 3c4:	97 b3       	in	r25, 0x17	; 23
+ 3c6:	89 2b       	or	r24, r25
+ 3c8:	87 bb       	out	0x17, r24	; 23
+ 3ca:	84 e0       	ldi	r24, 0x04	; 4
+ 3cc:	08 95       	ret
+ 3ce:	41 11       	cpse	r20, r1
+ 3d0:	0d c0       	rjmp	.+26     	; 0x3ec <DIO_SetPinDirection+0xaa>
+ 3d2:	81 e0       	ldi	r24, 0x01	; 1
+ 3d4:	90 e0       	ldi	r25, 0x00	; 0
+ 3d6:	02 c0       	rjmp	.+4      	; 0x3dc <DIO_SetPinDirection+0x9a>
+ 3d8:	88 0f       	add	r24, r24
+ 3da:	99 1f       	adc	r25, r25
+ 3dc:	6a 95       	dec	r22
+ 3de:	e2 f7       	brpl	.-8      	; 0x3d8 <DIO_SetPinDirection+0x96>
+ 3e0:	80 95       	com	r24
+ 3e2:	94 b3       	in	r25, 0x14	; 20
+ 3e4:	89 23       	and	r24, r25
+ 3e6:	84 bb       	out	0x14, r24	; 20
+ 3e8:	84 e0       	ldi	r24, 0x04	; 4
+ 3ea:	08 95       	ret
+ 3ec:	41 30       	cpi	r20, 0x01	; 1
+ 3ee:	79 f5       	brne	.+94     	; 0x44e <__EEPROM_REGION_LENGTH__+0x4e>
+ 3f0:	81 e0       	ldi	r24, 0x01	; 1
+ 3f2:	90 e0       	ldi	r25, 0x00	; 0
+ 3f4:	02 c0       	rjmp	.+4      	; 0x3fa <DIO_SetPinDirection+0xb8>
+ 3f6:	88 0f       	add	r24, r24
+ 3f8:	99 1f       	adc	r25, r25
+ 3fa:	6a 95       	dec	r22
+ 3fc:	e2 f7       	brpl	.-8      	; 0x3f6 <DIO_SetPinDirection+0xb4>
+ 3fe:	94 b3       	in	r25, 0x14	; 20
+ 400:	89 2b       	or	r24, r25
+ 402:	84 bb       	out	0x14, r24	; 20
+ 404:	84 e0       	ldi	r24, 0x04	; 4
+ 406:	08 95       	ret
+ 408:	41 11       	cpse	r20, r1
+ 40a:	0d c0       	rjmp	.+26     	; 0x426 <__EEPROM_REGION_LENGTH__+0x26>
+ 40c:	81 e0       	ldi	r24, 0x01	; 1
+ 40e:	90 e0       	ldi	r25, 0x00	; 0
+ 410:	02 c0       	rjmp	.+4      	; 0x416 <__EEPROM_REGION_LENGTH__+0x16>
+ 412:	88 0f       	add	r24, r24
+ 414:	99 1f       	adc	r25, r25
+ 416:	6a 95       	dec	r22
+ 418:	e2 f7       	brpl	.-8      	; 0x412 <__EEPROM_REGION_LENGTH__+0x12>
+ 41a:	80 95       	com	r24
+ 41c:	91 b3       	in	r25, 0x11	; 17
+ 41e:	89 23       	and	r24, r25
+ 420:	81 bb       	out	0x11, r24	; 17
+ 422:	84 e0       	ldi	r24, 0x04	; 4
+ 424:	08 95       	ret
+ 426:	41 30       	cpi	r20, 0x01	; 1
+ 428:	a1 f4       	brne	.+40     	; 0x452 <__EEPROM_REGION_LENGTH__+0x52>
+ 42a:	81 e0       	ldi	r24, 0x01	; 1
+ 42c:	90 e0       	ldi	r25, 0x00	; 0
+ 42e:	02 c0       	rjmp	.+4      	; 0x434 <__EEPROM_REGION_LENGTH__+0x34>
+ 430:	88 0f       	add	r24, r24
+ 432:	99 1f       	adc	r25, r25
+ 434:	6a 95       	dec	r22
+ 436:	e2 f7       	brpl	.-8      	; 0x430 <__EEPROM_REGION_LENGTH__+0x30>
+ 438:	91 b3       	in	r25, 0x11	; 17
+ 43a:	89 2b       	or	r24, r25
+ 43c:	81 bb       	out	0x11, r24	; 17
+ 43e:	84 e0       	ldi	r24, 0x04	; 4
+ 440:	08 95       	ret
+ 442:	85 e0       	ldi	r24, 0x05	; 5
+ 444:	08 95       	ret
+ 446:	84 e0       	ldi	r24, 0x04	; 4
+ 448:	08 95       	ret
+ 44a:	84 e0       	ldi	r24, 0x04	; 4
+ 44c:	08 95       	ret
+ 44e:	84 e0       	ldi	r24, 0x04	; 4
+ 450:	08 95       	ret
+ 452:	84 e0       	ldi	r24, 0x04	; 4
+ 454:	08 95       	ret
+
+00000456 <DIO_SetPinValue>:
+ 456:	81 30       	cpi	r24, 0x01	; 1
+ 458:	31 f1       	breq	.+76     	; 0x4a6 <DIO_SetPinValue+0x50>
+ 45a:	38 f0       	brcs	.+14     	; 0x46a <DIO_SetPinValue+0x14>
+ 45c:	82 30       	cpi	r24, 0x02	; 2
+ 45e:	09 f4       	brne	.+2      	; 0x462 <DIO_SetPinValue+0xc>
+ 460:	40 c0       	rjmp	.+128    	; 0x4e2 <DIO_SetPinValue+0x8c>
+ 462:	83 30       	cpi	r24, 0x03	; 3
+ 464:	09 f4       	brne	.+2      	; 0x468 <DIO_SetPinValue+0x12>
+ 466:	5a c0       	rjmp	.+180    	; 0x51c <DIO_SetPinValue+0xc6>
+ 468:	76 c0       	rjmp	.+236    	; 0x556 <DIO_SetPinValue+0x100>
+ 46a:	41 11       	cpse	r20, r1
+ 46c:	0d c0       	rjmp	.+26     	; 0x488 <DIO_SetPinValue+0x32>
+ 46e:	81 e0       	ldi	r24, 0x01	; 1
+ 470:	90 e0       	ldi	r25, 0x00	; 0
+ 472:	02 c0       	rjmp	.+4      	; 0x478 <DIO_SetPinValue+0x22>
+ 474:	88 0f       	add	r24, r24
+ 476:	99 1f       	adc	r25, r25
+ 478:	6a 95       	dec	r22
+ 47a:	e2 f7       	brpl	.-8      	; 0x474 <DIO_SetPinValue+0x1e>
+ 47c:	80 95       	com	r24
+ 47e:	9b b3       	in	r25, 0x1b	; 27
+ 480:	89 23       	and	r24, r25
+ 482:	8b bb       	out	0x1b, r24	; 27
+ 484:	84 e0       	ldi	r24, 0x04	; 4
+ 486:	08 95       	ret
+ 488:	41 30       	cpi	r20, 0x01	; 1
+ 48a:	09 f0       	breq	.+2      	; 0x48e <DIO_SetPinValue+0x38>
+ 48c:	66 c0       	rjmp	.+204    	; 0x55a <DIO_SetPinValue+0x104>
+ 48e:	81 e0       	ldi	r24, 0x01	; 1
+ 490:	90 e0       	ldi	r25, 0x00	; 0
+ 492:	02 c0       	rjmp	.+4      	; 0x498 <DIO_SetPinValue+0x42>
+ 494:	88 0f       	add	r24, r24
+ 496:	99 1f       	adc	r25, r25
+ 498:	6a 95       	dec	r22
+ 49a:	e2 f7       	brpl	.-8      	; 0x494 <DIO_SetPinValue+0x3e>
+ 49c:	9b b3       	in	r25, 0x1b	; 27
+ 49e:	89 2b       	or	r24, r25
+ 4a0:	8b bb       	out	0x1b, r24	; 27
+ 4a2:	84 e0       	ldi	r24, 0x04	; 4
+ 4a4:	08 95       	ret
+ 4a6:	41 11       	cpse	r20, r1
+ 4a8:	0d c0       	rjmp	.+26     	; 0x4c4 <DIO_SetPinValue+0x6e>
+ 4aa:	81 e0       	ldi	r24, 0x01	; 1
+ 4ac:	90 e0       	ldi	r25, 0x00	; 0
+ 4ae:	02 c0       	rjmp	.+4      	; 0x4b4 <DIO_SetPinValue+0x5e>
+ 4b0:	88 0f       	add	r24, r24
+ 4b2:	99 1f       	adc	r25, r25
+ 4b4:	6a 95       	dec	r22
+ 4b6:	e2 f7       	brpl	.-8      	; 0x4b0 <DIO_SetPinValue+0x5a>
+ 4b8:	80 95       	com	r24
+ 4ba:	98 b3       	in	r25, 0x18	; 24
+ 4bc:	89 23       	and	r24, r25
+ 4be:	88 bb       	out	0x18, r24	; 24
+ 4c0:	84 e0       	ldi	r24, 0x04	; 4
+ 4c2:	08 95       	ret
+ 4c4:	41 30       	cpi	r20, 0x01	; 1
+ 4c6:	09 f0       	breq	.+2      	; 0x4ca <DIO_SetPinValue+0x74>
+ 4c8:	4a c0       	rjmp	.+148    	; 0x55e <DIO_SetPinValue+0x108>
+ 4ca:	81 e0       	ldi	r24, 0x01	; 1
+ 4cc:	90 e0       	ldi	r25, 0x00	; 0
+ 4ce:	02 c0       	rjmp	.+4      	; 0x4d4 <DIO_SetPinValue+0x7e>
+ 4d0:	88 0f       	add	r24, r24
+ 4d2:	99 1f       	adc	r25, r25
+ 4d4:	6a 95       	dec	r22
+ 4d6:	e2 f7       	brpl	.-8      	; 0x4d0 <DIO_SetPinValue+0x7a>
+ 4d8:	98 b3       	in	r25, 0x18	; 24
+ 4da:	89 2b       	or	r24, r25
+ 4dc:	88 bb       	out	0x18, r24	; 24
+ 4de:	84 e0       	ldi	r24, 0x04	; 4
+ 4e0:	08 95       	ret
+ 4e2:	41 11       	cpse	r20, r1
+ 4e4:	0d c0       	rjmp	.+26     	; 0x500 <DIO_SetPinValue+0xaa>
+ 4e6:	81 e0       	ldi	r24, 0x01	; 1
+ 4e8:	90 e0       	ldi	r25, 0x00	; 0
+ 4ea:	02 c0       	rjmp	.+4      	; 0x4f0 <DIO_SetPinValue+0x9a>
+ 4ec:	88 0f       	add	r24, r24
+ 4ee:	99 1f       	adc	r25, r25
+ 4f0:	6a 95       	dec	r22
+ 4f2:	e2 f7       	brpl	.-8      	; 0x4ec <DIO_SetPinValue+0x96>
+ 4f4:	80 95       	com	r24
+ 4f6:	95 b3       	in	r25, 0x15	; 21
+ 4f8:	89 23       	and	r24, r25
+ 4fa:	85 bb       	out	0x15, r24	; 21
+ 4fc:	84 e0       	ldi	r24, 0x04	; 4
+ 4fe:	08 95       	ret
+ 500:	41 30       	cpi	r20, 0x01	; 1
+ 502:	79 f5       	brne	.+94     	; 0x562 <DIO_SetPinValue+0x10c>
+ 504:	81 e0       	ldi	r24, 0x01	; 1
+ 506:	90 e0       	ldi	r25, 0x00	; 0
+ 508:	02 c0       	rjmp	.+4      	; 0x50e <DIO_SetPinValue+0xb8>
+ 50a:	88 0f       	add	r24, r24
+ 50c:	99 1f       	adc	r25, r25
+ 50e:	6a 95       	dec	r22
+ 510:	e2 f7       	brpl	.-8      	; 0x50a <DIO_SetPinValue+0xb4>
+ 512:	95 b3       	in	r25, 0x15	; 21
+ 514:	89 2b       	or	r24, r25
+ 516:	85 bb       	out	0x15, r24	; 21
+ 518:	84 e0       	ldi	r24, 0x04	; 4
+ 51a:	08 95       	ret
+ 51c:	41 11       	cpse	r20, r1
+ 51e:	0d c0       	rjmp	.+26     	; 0x53a <DIO_SetPinValue+0xe4>
+ 520:	81 e0       	ldi	r24, 0x01	; 1
+ 522:	90 e0       	ldi	r25, 0x00	; 0
+ 524:	02 c0       	rjmp	.+4      	; 0x52a <DIO_SetPinValue+0xd4>
+ 526:	88 0f       	add	r24, r24
+ 528:	99 1f       	adc	r25, r25
+ 52a:	6a 95       	dec	r22
+ 52c:	e2 f7       	brpl	.-8      	; 0x526 <DIO_SetPinValue+0xd0>
+ 52e:	80 95       	com	r24
+ 530:	92 b3       	in	r25, 0x12	; 18
+ 532:	89 23       	and	r24, r25
+ 534:	82 bb       	out	0x12, r24	; 18
+ 536:	84 e0       	ldi	r24, 0x04	; 4
+ 538:	08 95       	ret
+ 53a:	41 30       	cpi	r20, 0x01	; 1
+ 53c:	a1 f4       	brne	.+40     	; 0x566 <DIO_SetPinValue+0x110>
+ 53e:	81 e0       	ldi	r24, 0x01	; 1
+ 540:	90 e0       	ldi	r25, 0x00	; 0
+ 542:	02 c0       	rjmp	.+4      	; 0x548 <DIO_SetPinValue+0xf2>
+ 544:	88 0f       	add	r24, r24
+ 546:	99 1f       	adc	r25, r25
+ 548:	6a 95       	dec	r22
+ 54a:	e2 f7       	brpl	.-8      	; 0x544 <DIO_SetPinValue+0xee>
+ 54c:	92 b3       	in	r25, 0x12	; 18
+ 54e:	89 2b       	or	r24, r25
+ 550:	82 bb       	out	0x12, r24	; 18
+ 552:	84 e0       	ldi	r24, 0x04	; 4
+ 554:	08 95       	ret
+ 556:	85 e0       	ldi	r24, 0x05	; 5
+ 558:	08 95       	ret
+ 55a:	84 e0       	ldi	r24, 0x04	; 4
+ 55c:	08 95       	ret
+ 55e:	84 e0       	ldi	r24, 0x04	; 4
+ 560:	08 95       	ret
+ 562:	84 e0       	ldi	r24, 0x04	; 4
+ 564:	08 95       	ret
+ 566:	84 e0       	ldi	r24, 0x04	; 4
+ 568:	08 95       	ret
+
+0000056a <DIO_GetPinValue>:
+uint8_t DIO_GetPinValue(uint8_t au8_PORT,uint8_t PIN)
+{
+	uint8_t PinValue;
+	switch(au8_PORT)
+ 56a:	81 30       	cpi	r24, 0x01	; 1
+ 56c:	79 f0       	breq	.+30     	; 0x58c <DIO_GetPinValue+0x22>
+ 56e:	28 f0       	brcs	.+10     	; 0x57a <DIO_GetPinValue+0x10>
+ 570:	82 30       	cpi	r24, 0x02	; 2
+ 572:	a9 f0       	breq	.+42     	; 0x59e <DIO_GetPinValue+0x34>
+ 574:	83 30       	cpi	r24, 0x03	; 3
+ 576:	e1 f0       	breq	.+56     	; 0x5b0 <DIO_GetPinValue+0x46>
+ 578:	24 c0       	rjmp	.+72     	; 0x5c2 <DIO_GetPinValue+0x58>
+	{
+		case PORTA: PinValue = GET_BIT(PINA_REG,PIN); break;
+ 57a:	89 b3       	in	r24, 0x19	; 25
+ 57c:	90 e0       	ldi	r25, 0x00	; 0
+ 57e:	02 c0       	rjmp	.+4      	; 0x584 <DIO_GetPinValue+0x1a>
+ 580:	95 95       	asr	r25
+ 582:	87 95       	ror	r24
+ 584:	6a 95       	dec	r22
+ 586:	e2 f7       	brpl	.-8      	; 0x580 <DIO_GetPinValue+0x16>
+ 588:	81 70       	andi	r24, 0x01	; 1
+ 58a:	08 95       	ret
+		case PORTB: PinValue = GET_BIT(PINB_REG,PIN); break;
+ 58c:	86 b3       	in	r24, 0x16	; 22
+ 58e:	90 e0       	ldi	r25, 0x00	; 0
+ 590:	02 c0       	rjmp	.+4      	; 0x596 <DIO_GetPinValue+0x2c>
+ 592:	95 95       	asr	r25
+ 594:	87 95       	ror	r24
+ 596:	6a 95       	dec	r22
+ 598:	e2 f7       	brpl	.-8      	; 0x592 <DIO_GetPinValue+0x28>
+ 59a:	81 70       	andi	r24, 0x01	; 1
+ 59c:	08 95       	ret
+		case PORTC: PinValue = GET_BIT(PINC_REG,PIN); break;
+ 59e:	83 b3       	in	r24, 0x13	; 19
+ 5a0:	90 e0       	ldi	r25, 0x00	; 0
+ 5a2:	02 c0       	rjmp	.+4      	; 0x5a8 <DIO_GetPinValue+0x3e>
+ 5a4:	95 95       	asr	r25
+ 5a6:	87 95       	ror	r24
+ 5a8:	6a 95       	dec	r22
+ 5aa:	e2 f7       	brpl	.-8      	; 0x5a4 <DIO_GetPinValue+0x3a>
+ 5ac:	81 70       	andi	r24, 0x01	; 1
+ 5ae:	08 95       	ret
+		case PORTD: PinValue = GET_BIT(PIND_REG,PIN); break;
+ 5b0:	80 b3       	in	r24, 0x10	; 16
+ 5b2:	90 e0       	ldi	r25, 0x00	; 0
+ 5b4:	02 c0       	rjmp	.+4      	; 0x5ba <DIO_GetPinValue+0x50>
+ 5b6:	95 95       	asr	r25
+ 5b8:	87 95       	ror	r24
+ 5ba:	6a 95       	dec	r22
+ 5bc:	e2 f7       	brpl	.-8      	; 0x5b6 <DIO_GetPinValue+0x4c>
+ 5be:	81 70       	andi	r24, 0x01	; 1
+ 5c0:	08 95       	ret
+		default:PinValue=DIO_CHOISE_NOT_FOUND;//error
+ 5c2:	85 e0       	ldi	r24, 0x05	; 5
+			break;
+	}//switch
+	return PinValue;
+}//function
+ 5c4:	08 95       	ret
+
+000005c6 <I2C_masterInit>:
+/*                                       Master Transmit/Receive APIs Implementation                                  */
+/**********************************************************************************************************************/
+                                                                                                                      //
+void I2C_masterInit(void){                                                                                            //
+	                                     /************************************************/                           //
+	Ru8_TWBR = BIT_RATE;                     /*  1 - Setting Bit Rate                        */                           //
+ 5c6:	86 e4       	ldi	r24, 0x46	; 70
+ 5c8:	80 b9       	out	0x00, r24	; 0
+	#if PRESCALER == PRESCALER_1         /*                                              */                           //
+	Ru8_TWSR = (0 << TWPS1) | (0 << TWPS0);  /*  2 - Prescaler Value Of 1                    */                           //
+ 5ca:	11 b8       	out	0x01, r1	; 1
+ 5cc:	08 95       	ret
+
+000005ce <I2C_masterStart>:
+	#endif                                                                                                            //
+}                                                                                                                     //
+                                                                                                                      //
+void I2C_masterStart(void){                                                                                           //
+	
+	Ru8_TWCR = 0;                                                 /*****************************************************************/
+ 5ce:	16 be       	out	0x36, r1	; 54
+	Ru8_TWCR = (1 << TWINT) | (1 << TWSTA) | (1 << TWEN);/* 1 - Reset I2C interrupt flag, send start condition, enable I2C*/
+ 5d0:	84 ea       	ldi	r24, 0xA4	; 164
+ 5d2:	86 bf       	out	0x36, r24	; 54
+	while(!(Ru8_TWCR & (1 << TWINT)));                   /* 2 - Stay here until start condition has been transmitted      */
+ 5d4:	06 b6       	in	r0, 0x36	; 54
+ 5d6:	07 fe       	sbrs	r0, 7
+ 5d8:	fd cf       	rjmp	.-6      	; 0x5d4 <I2C_masterStart+0x6>
+	while( (Ru8_TWSR & 0xF8) != MASTER_START);           /* 3 - Check status register that start condition has been sent  */
+ 5da:	81 b1       	in	r24, 0x01	; 1
+ 5dc:	88 7f       	andi	r24, 0xF8	; 248
+ 5de:	88 30       	cpi	r24, 0x08	; 8
+ 5e0:	e1 f7       	brne	.-8      	; 0x5da <I2C_masterStart+0xc>
+}                                                    /*****************************************************************/
+ 5e2:	08 95       	ret
+
+000005e4 <I2C_repeatedStart>:
+                                                                                                                       ////////
+void I2C_repeatedStart(void){                                                                                          ////////
+	                                                /*************************************************************************/
+	Ru8_TWCR= (1 << TWINT) | (1 << TWSTA) | (1 << TWEN);/* 1 - Reset I2C interrupt flag, send start condition, enable I2C        */
+ 5e4:	84 ea       	ldi	r24, 0xA4	; 164
+ 5e6:	86 bf       	out	0x36, r24	; 54
+	while(!(Ru8_TWCR & (1 << TWINT)));                  /* 2 - Stay here until start condition has been transmitted              */
+ 5e8:	06 b6       	in	r0, 0x36	; 54
+ 5ea:	07 fe       	sbrs	r0, 7
+ 5ec:	fd cf       	rjmp	.-6      	; 0x5e8 <I2C_repeatedStart+0x4>
+	while( (Ru8_TWSR & 0xF8) != MASTER_REPEATED_START); /* 3 - Check status register that repeated start condition has been sent */
+ 5ee:	81 b1       	in	r24, 0x01	; 1
+ 5f0:	88 7f       	andi	r24, 0xF8	; 248
+ 5f2:	80 31       	cpi	r24, 0x10	; 16
+ 5f4:	e1 f7       	brne	.-8      	; 0x5ee <I2C_repeatedStart+0xa>
+}                                                   /*************************************************************************//////////////////////////////
+ 5f6:	08 95       	ret
+
+000005f8 <I2C_masterWriteToAddress>:
+                                                                                                                              //////////////////////////////
+void I2C_masterWriteToAddress(uint8_t u8_slaveAddress){                                                                       //////////////////////////////                                     /********************************************************************************************/
+ 5f8:	cf 93       	push	r28
+ 5fa:	c8 2f       	mov	r28, r24
+	Ru8_TWDR = (u8_slaveAddress << 1);                            /* 1 - Higher 7 - bits to represent slave address and LSB is set to 0 for writing operation */
+ 5fc:	88 0f       	add	r24, r24
+ 5fe:	83 b9       	out	0x03, r24	; 3
+	Ru8_TWCR = (1 << TWINT) | (1 << TWEN);                        /* 2 - Reset I2C interrupt flag and enable I2C operation                                    */
+ 600:	84 e8       	ldi	r24, 0x84	; 132
+ 602:	86 bf       	out	0x36, r24	; 54
+	while (!(Ru8_TWCR & (1 << TWINT)));                           /* 3 - Stay here until slave address has been transmitted                                   */
+ 604:	06 b6       	in	r0, 0x36	; 54
+ 606:	07 fe       	sbrs	r0, 7
+ 608:	fd cf       	rjmp	.-6      	; 0x604 <I2C_masterWriteToAddress+0xc>
+ 60a:	05 c0       	rjmp	.+10     	; 0x616 <I2C_masterWriteToAddress+0x1e>
+	while ((Ru8_TWSR & 0xF8) != SLAVE_ADDRESS_WRITE_TRANSMITTED)// && (Ru8_TWSR & 0xF8) != 0x20 );/* 4 - Check in status register that address has been transmitted and slave has acknowledged*/
+    {
+
+		I2C_repeatedStart();
+ 60c:	0e 94 f2 02 	call	0x5e4	; 0x5e4 <I2C_repeatedStart>
+		I2C_masterWriteToAddress(u8_slaveAddress);
+ 610:	8c 2f       	mov	r24, r28
+ 612:	0e 94 fc 02 	call	0x5f8	; 0x5f8 <I2C_masterWriteToAddress>
+                                                                                                                              //////////////////////////////
+void I2C_masterWriteToAddress(uint8_t u8_slaveAddress){                                                                       //////////////////////////////                                     /********************************************************************************************/
+	Ru8_TWDR = (u8_slaveAddress << 1);                            /* 1 - Higher 7 - bits to represent slave address and LSB is set to 0 for writing operation */
+	Ru8_TWCR = (1 << TWINT) | (1 << TWEN);                        /* 2 - Reset I2C interrupt flag and enable I2C operation                                    */
+	while (!(Ru8_TWCR & (1 << TWINT)));                           /* 3 - Stay here until slave address has been transmitted                                   */
+	while ((Ru8_TWSR & 0xF8) != SLAVE_ADDRESS_WRITE_TRANSMITTED)// && (Ru8_TWSR & 0xF8) != 0x20 );/* 4 - Check in status register that address has been transmitted and slave has acknowledged*/
+ 616:	81 b1       	in	r24, 0x01	; 1
+ 618:	88 7f       	andi	r24, 0xF8	; 248
+ 61a:	88 31       	cpi	r24, 0x18	; 24
+ 61c:	b9 f7       	brne	.-18     	; 0x60c <I2C_masterWriteToAddress+0x14>
+    {
+
+		I2C_repeatedStart();
+		I2C_masterWriteToAddress(u8_slaveAddress);
+	}
+}                                                             /********************************************************************************************/
+ 61e:	cf 91       	pop	r28
+ 620:	08 95       	ret
+
+00000622 <I2C_masterReadFromAddress>:
+                                                                                                                                                         ///
+void I2C_masterReadFromAddress(uint8_t u8_slaveAddress){                                                                                                 ///                                                      /******************************************************************************************///
+ 622:	cf 93       	push	r28
+ 624:	c8 2f       	mov	r28, r24
+	
+	Ru8_TWDR = (u8_slaveAddress << 1);                            /* 1 - Higher 7 - bits to represent slave address                                         *///
+ 626:	88 0f       	add	r24, r24
+ 628:	83 b9       	out	0x03, r24	; 3
+	Ru8_TWDR |= (1 << 0);                                          /* 2 - Set LSB in TWD_R to 1 for reading operation                                        *///
+ 62a:	83 b1       	in	r24, 0x03	; 3
+ 62c:	81 60       	ori	r24, 0x01	; 1
+ 62e:	83 b9       	out	0x03, r24	; 3
+	Ru8_TWCR |= (1 << TWINT) | (1 << TWEN);                        /* 3 - Reset I2C interrupt flag and enable I2C operation                                  *///
+ 630:	86 b7       	in	r24, 0x36	; 54
+ 632:	84 68       	ori	r24, 0x84	; 132
+ 634:	86 bf       	out	0x36, r24	; 54
+	while (!(Ru8_TWCR & (1 << TWINT)));                           /* 4 - Stay here until slave address to read from has been transmitted                    *///
+ 636:	06 b6       	in	r0, 0x36	; 54
+ 638:	07 fe       	sbrs	r0, 7
+ 63a:	fd cf       	rjmp	.-6      	; 0x636 <I2C_masterReadFromAddress+0x14>
+ 63c:	05 c0       	rjmp	.+10     	; 0x648 <I2C_masterReadFromAddress+0x26>
+	while ( (Ru8_TWSR & 0xF8) != SLAVE_ADDRESS_READ_TRANSMITTED) /* 5 - Check in status register that the address of slave to read has been transmitted    *///
+    {
+		I2C_repeatedStart();
+ 63e:	0e 94 f2 02 	call	0x5e4	; 0x5e4 <I2C_repeatedStart>
+		I2C_masterReadFromAddress(u8_slaveAddress);
+ 642:	8c 2f       	mov	r24, r28
+ 644:	0e 94 11 03 	call	0x622	; 0x622 <I2C_masterReadFromAddress>
+	
+	Ru8_TWDR = (u8_slaveAddress << 1);                            /* 1 - Higher 7 - bits to represent slave address                                         *///
+	Ru8_TWDR |= (1 << 0);                                          /* 2 - Set LSB in TWD_R to 1 for reading operation                                        *///
+	Ru8_TWCR |= (1 << TWINT) | (1 << TWEN);                        /* 3 - Reset I2C interrupt flag and enable I2C operation                                  *///
+	while (!(Ru8_TWCR & (1 << TWINT)));                           /* 4 - Stay here until slave address to read from has been transmitted                    *///
+	while ( (Ru8_TWSR & 0xF8) != SLAVE_ADDRESS_READ_TRANSMITTED) /* 5 - Check in status register that the address of slave to read has been transmitted    *///
+ 648:	81 b1       	in	r24, 0x01	; 1
+ 64a:	88 7f       	andi	r24, 0xF8	; 248
+ 64c:	80 34       	cpi	r24, 0x40	; 64
+ 64e:	b9 f7       	brne	.-18     	; 0x63e <I2C_masterReadFromAddress+0x1c>
+    {
+		I2C_repeatedStart();
+		I2C_masterReadFromAddress(u8_slaveAddress);
+	}
+}                                                             /******************************************************************************************///
+ 650:	cf 91       	pop	r28
+ 652:	08 95       	ret
+
+00000654 <I2C_masterWriteData>:
+                                                                                                                                           /////////////////
+void I2C_masterWriteData(uint8_t u8_data){                                                                                                 /////////////////
+	                                                         /*****************************************************************************/
+	Ru8_TWDR = u8_data;                                          /* 1 - Load data to be transmitted                                           */
+ 654:	83 b9       	out	0x03, r24	; 3
+	Ru8_TWCR = (1 << TWINT) | (1 << TWEN);                       /* 2 - Reset I2C interrupt flag and enable I2C operation                     */
+ 656:	84 e8       	ldi	r24, 0x84	; 132
+ 658:	86 bf       	out	0x36, r24	; 54
+	while (!(Ru8_TWCR & (1 << TWINT)));                          /* 3 - Stay here until data is transmitted from master                       */
+ 65a:	06 b6       	in	r0, 0x36	; 54
+ 65c:	07 fe       	sbrs	r0, 7
+ 65e:	fd cf       	rjmp	.-6      	; 0x65a <I2C_masterWriteData+0x6>
+	while ( (Ru8_TWSR & 0xF8) != MASTER_WRITE_DATA_TRANSMITTED);//&& (Ru8_TWSR & 0xF8) != 0x30 ); /* 4 - Check in status register that data has been transmitted               */
+ 660:	81 b1       	in	r24, 0x01	; 1
+ 662:	88 7f       	andi	r24, 0xF8	; 248
+ 664:	88 32       	cpi	r24, 0x28	; 40
+ 666:	e1 f7       	brne	.-8      	; 0x660 <I2C_masterWriteData+0xc>
+}                                                            /*****************************************************************************/
+ 668:	08 95       	ret
+
+0000066a <I2C_masterReadData>:
+                                                                                                                                          //
+uint8_t I2C_masterReadData(void){                                                                                                         //
+	
+                                                               /*******************************************************************************/
+	Ru8_TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWEA);       /* 1 - Reset I2C interrupt flag and enable I2C operation                       */
+ 66a:	84 ec       	ldi	r24, 0xC4	; 196
+ 66c:	86 bf       	out	0x36, r24	; 54
+	while (!(Ru8_TWCR & (1 << TWINT)));                        /* 2 - Stay here until data is received by master                              */
+ 66e:	06 b6       	in	r0, 0x36	; 54
+ 670:	07 fe       	sbrs	r0, 7
+ 672:	fd cf       	rjmp	.-6      	; 0x66e <I2C_masterReadData+0x4>
+	while ( (Ru8_TWSR & 0xF8) != MASTER_READ_DATA_ACK);        /* 3 - Check that data has been transmitted to master                          */
+ 674:	81 b1       	in	r24, 0x01	; 1
+ 676:	88 7f       	andi	r24, 0xF8	; 248
+ 678:	80 35       	cpi	r24, 0x50	; 80
+ 67a:	e1 f7       	brne	.-8      	; 0x674 <I2C_masterReadData+0xa>
+	return Ru8_TWDR;                                           /* 4 - Return transmitted data                                                 */
+ 67c:	83 b1       	in	r24, 0x03	; 3
+}                                                              /*******************************************************************************/
+ 67e:	08 95       	ret
+
+00000680 <I2C_masterReadFinalData>:
+
+uint8_t I2C_masterReadFinalData(void){                                                                                                         //
+	
+	                                                           /*******************************************************************************/
+	Ru8_TWCR = (1 << TWINT) | (1 << TWEN);                     /* 1 - Reset I2C interrupt flag and enable I2C operation                       */
+ 680:	84 e8       	ldi	r24, 0x84	; 132
+ 682:	86 bf       	out	0x36, r24	; 54
+	while (!(Ru8_TWCR & (1 << TWINT)));                        /* 2 - Stay here until data is received by master                              */
+ 684:	06 b6       	in	r0, 0x36	; 54
+ 686:	07 fe       	sbrs	r0, 7
+ 688:	fd cf       	rjmp	.-6      	; 0x684 <I2C_masterReadFinalData+0x4>
+	while ( (Ru8_TWSR & 0xF8) != MASTER_READ_DATA_NACK);       /* 3 - Check that data has been transmitted to master                          */
+ 68a:	81 b1       	in	r24, 0x01	; 1
+ 68c:	88 7f       	andi	r24, 0xF8	; 248
+ 68e:	88 35       	cpi	r24, 0x58	; 88
+ 690:	e1 f7       	brne	.-8      	; 0x68a <I2C_masterReadFinalData+0xa>
+	return Ru8_TWDR;                                           /* 4 - Return transmitted data                                                 */
+ 692:	83 b1       	in	r24, 0x03	; 3
+}
+ 694:	08 95       	ret
+
+00000696 <I2C_masterStop>:
+                                                                                                                                          //
+void I2C_masterStop(void){                                                                                                                //
+	                                                  /************************************************************************************/
+	Ru8_TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWSTO); /* 1 - Reset I2C interrupt flag, enable I2C operation and transmit a stop condition */
+ 696:	84 e9       	ldi	r24, 0x94	; 148
+ 698:	86 bf       	out	0x36, r24	; 54
+	while (!(Ru8_TWCR != (1 << TWSTO))); /* 2 - Stay here until stop condition is successfully transmitted                   */
+ 69a:	86 b7       	in	r24, 0x36	; 54
+ 69c:	80 31       	cpi	r24, 0x10	; 16
+ 69e:	e9 f3       	breq	.-6      	; 0x69a <I2C_masterStop+0x4>
+}                                                     /************************************************************************************/
+ 6a0:	08 95       	ret
+
+000006a2 <SPI_init>:
+
+
+void SPI_init(void){
+	
+	#if SPI_MODE == MASTER_MODE
+	DIO_SetPinDirection(PORTB,SCK,OUTPUT);
+ 6a2:	41 e0       	ldi	r20, 0x01	; 1
+ 6a4:	67 e0       	ldi	r22, 0x07	; 7
+ 6a6:	81 e0       	ldi	r24, 0x01	; 1
+ 6a8:	0e 94 a1 01 	call	0x342	; 0x342 <DIO_SetPinDirection>
+	DIO_SetPinDirection(PORTB,MOSI,OUTPUT);
+ 6ac:	41 e0       	ldi	r20, 0x01	; 1
+ 6ae:	65 e0       	ldi	r22, 0x05	; 5
+ 6b0:	81 e0       	ldi	r24, 0x01	; 1
+ 6b2:	0e 94 a1 01 	call	0x342	; 0x342 <DIO_SetPinDirection>
+	DIO_SetPinDirection(PORTB,SS,OUTPUT);
+ 6b6:	41 e0       	ldi	r20, 0x01	; 1
+ 6b8:	64 e0       	ldi	r22, 0x04	; 4
+ 6ba:	81 e0       	ldi	r24, 0x01	; 1
+ 6bc:	0e 94 a1 01 	call	0x342	; 0x342 <DIO_SetPinDirection>
+	DIO_SetPinValue(PORTB,SS,HIGH);
+ 6c0:	41 e0       	ldi	r20, 0x01	; 1
+ 6c2:	64 e0       	ldi	r22, 0x04	; 4
+ 6c4:	81 e0       	ldi	r24, 0x01	; 1
+ 6c6:	0e 94 2b 02 	call	0x456	; 0x456 <DIO_SetPinValue>
+	SPC_R |= (1 << SPE) | (1 << MSTR);
+ 6ca:	8d b1       	in	r24, 0x0d	; 13
+ 6cc:	80 65       	ori	r24, 0x50	; 80
+ 6ce:	8d b9       	out	0x0d, r24	; 13
+	#elif SCK_FREQ_PRESCALE == PRESCALER_32
+	SPC_R |= (1 << SPR1) | (1 << SPI2X);
+	#elif SCK_FREQ_PRESCALE == PRESCALER_64
+	SPC_R |= (1 << SPR1);
+	#elif SCK_FREQ_PRESCALE == PRESCALER_128
+	SPC_R |= (1 << SPR1) | (1 << SPR0);
+ 6d0:	8d b1       	in	r24, 0x0d	; 13
+ 6d2:	83 60       	ori	r24, 0x03	; 3
+ 6d4:	8d b9       	out	0x0d, r24	; 13
+	#endif
+	
+	#if CLOCK_POLARITY == HIGH_WHEN_IDLE
+	SPC_R |= (1 << CPOL);
+	#elif CLOCK_POLARITY == LOW_WHEN_IDLE
+	SPC_R &= ~(1 << CPOL);
+ 6d6:	8d b1       	in	r24, 0x0d	; 13
+ 6d8:	87 7f       	andi	r24, 0xF7	; 247
+ 6da:	8d b9       	out	0x0d, r24	; 13
+	#else
+	#error "Invalid Clock Polarity Setting"
+	#endif
+	
+	#if DATA_SAMPLING == LEADING_EDGE
+	SPC_R &= ~(1 << CPHA);
+ 6dc:	8d b1       	in	r24, 0x0d	; 13
+ 6de:	8b 7f       	andi	r24, 0xFB	; 251
+ 6e0:	8d b9       	out	0x0d, r24	; 13
+	
+	#if SPI_INTERRUPT == ENABLE
+	SPC_R    |= (1 << SPIE);
+	STATUS_R |= (1 << GLOBAL_INTERRUPT);
+	#elif SPI_INTERRUPT == DISABLE
+	SPC_R    &=	~(1 << SPIE);
+ 6e2:	8d b1       	in	r24, 0x0d	; 13
+ 6e4:	8f 77       	andi	r24, 0x7F	; 127
+ 6e6:	8d b9       	out	0x0d, r24	; 13
+	STATUS_R &= ~(1 << GLOBAL_INTERRUPT);
+ 6e8:	8f b7       	in	r24, 0x3f	; 63
+ 6ea:	8f 77       	andi	r24, 0x7F	; 127
+ 6ec:	8f bf       	out	0x3f, r24	; 63
+	#else
+	#error "Invalid Interrupt Setting"
+	#endif
+	
+	#if DATA_ORDER == MSB_FIRST
+	SPC_R &= ~(1 << DORD);
+ 6ee:	8d b1       	in	r24, 0x0d	; 13
+ 6f0:	8f 7d       	andi	r24, 0xDF	; 223
+ 6f2:	8d b9       	out	0x0d, r24	; 13
+ 6f4:	08 95       	ret
+
+000006f6 <SPI_tranceiver>:
+	#else
+	#error "Invalid Data Order Setting"
+	#endif
+}
+
+uint8_t SPI_tranceiver(uint8_t u8_data){
+ 6f6:	cf 93       	push	r28
+ 6f8:	c8 2f       	mov	r28, r24
+	
+	DIO_SetPinValue(PORTB,SS,LOW);
+ 6fa:	40 e0       	ldi	r20, 0x00	; 0
+ 6fc:	64 e0       	ldi	r22, 0x04	; 4
+ 6fe:	81 e0       	ldi	r24, 0x01	; 1
+ 700:	0e 94 2b 02 	call	0x456	; 0x456 <DIO_SetPinValue>
+	SPD_R = u8_data;
+ 704:	cf b9       	out	0x0f, r28	; 15
+	while(!(SPS_R & (1 << SPIF)));
+ 706:	77 9b       	sbis	0x0e, 7	; 14
+ 708:	fe cf       	rjmp	.-4      	; 0x706 <SPI_tranceiver+0x10>
+	DIO_SetPinValue(PORTB,SS,HIGH);
+ 70a:	41 e0       	ldi	r20, 0x01	; 1
+ 70c:	64 e0       	ldi	r22, 0x04	; 4
+ 70e:	81 e0       	ldi	r24, 0x01	; 1
+ 710:	0e 94 2b 02 	call	0x456	; 0x456 <DIO_SetPinValue>
+	return SPD_R;
+ 714:	8f b1       	in	r24, 0x0f	; 15
+}
+ 716:	cf 91       	pop	r28
+ 718:	08 95       	ret
+
+0000071a <SPI_masterTransmitString>:
+
+void SPI_masterTransmitString(uint8_t* u8_buffer){
+ 71a:	0f 93       	push	r16
+ 71c:	1f 93       	push	r17
+ 71e:	cf 93       	push	r28
+ 720:	8c 01       	movw	r16, r24
+	
+	uint8_t u8_buffIndex = 0;
+ 722:	c0 e0       	ldi	r28, 0x00	; 0
+	
+	do{
+		SPI_tranceiver(u8_buffer[u8_buffIndex]);
+ 724:	f8 01       	movw	r30, r16
+ 726:	ec 0f       	add	r30, r28
+ 728:	f1 1d       	adc	r31, r1
+ 72a:	80 81       	ld	r24, Z
+ 72c:	0e 94 7b 03 	call	0x6f6	; 0x6f6 <SPI_tranceiver>
+		u8_buffIndex++;
+ 730:	cf 5f       	subi	r28, 0xFF	; 255
+	}while(u8_buffer[u8_buffIndex - 1] != '\0');
+ 732:	f8 01       	movw	r30, r16
+ 734:	ec 0f       	add	r30, r28
+ 736:	f1 1d       	adc	r31, r1
+ 738:	31 97       	sbiw	r30, 0x01	; 1
+ 73a:	80 81       	ld	r24, Z
+ 73c:	81 11       	cpse	r24, r1
+ 73e:	f2 cf       	rjmp	.-28     	; 0x724 <SPI_masterTransmitString+0xa>
+}
+ 740:	cf 91       	pop	r28
+ 742:	1f 91       	pop	r17
+ 744:	0f 91       	pop	r16
+ 746:	08 95       	ret
+
+00000748 <__vector_11>:
+
+volatile uint32_t counts = 0;
+
+void __vector_11(void) __attribute__((signal));
+void __vector_11(void)
+{
+ 748:	1f 92       	push	r1
+ 74a:	0f 92       	push	r0
+ 74c:	0f b6       	in	r0, 0x3f	; 63
+ 74e:	0f 92       	push	r0
+ 750:	11 24       	eor	r1, r1
+ 752:	8f 93       	push	r24
+ 754:	9f 93       	push	r25
+ 756:	af 93       	push	r26
+ 758:	bf 93       	push	r27
+	counts++;
+ 75a:	80 91 15 01 	lds	r24, 0x0115	; 0x800115 <counts>
+ 75e:	90 91 16 01 	lds	r25, 0x0116	; 0x800116 <counts+0x1>
+ 762:	a0 91 17 01 	lds	r26, 0x0117	; 0x800117 <counts+0x2>
+ 766:	b0 91 18 01 	lds	r27, 0x0118	; 0x800118 <counts+0x3>
+ 76a:	01 96       	adiw	r24, 0x01	; 1
+ 76c:	a1 1d       	adc	r26, r1
+ 76e:	b1 1d       	adc	r27, r1
+ 770:	80 93 15 01 	sts	0x0115, r24	; 0x800115 <counts>
+ 774:	90 93 16 01 	sts	0x0116, r25	; 0x800116 <counts+0x1>
+ 778:	a0 93 17 01 	sts	0x0117, r26	; 0x800117 <counts+0x2>
+ 77c:	b0 93 18 01 	sts	0x0118, r27	; 0x800118 <counts+0x3>
+}
+ 780:	bf 91       	pop	r27
+ 782:	af 91       	pop	r26
+ 784:	9f 91       	pop	r25
+ 786:	8f 91       	pop	r24
+ 788:	0f 90       	pop	r0
+ 78a:	0f be       	out	0x3f, r0	; 63
+ 78c:	0f 90       	pop	r0
+ 78e:	1f 90       	pop	r1
+ 790:	18 95       	reti
+
+00000792 <USART_voidInit>:
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void USART_TX_Int_CallBack_fun(void (*ptr_To_Fun)(void))
+{
+	ptr_To_TX_Int_fun=ptr_To_Fun;
+ 792:	fc 01       	movw	r30, r24
+ 794:	80 81       	ld	r24, Z
+ 796:	81 11       	cpse	r24, r1
+ 798:	0a c0       	rjmp	.+20     	; 0x7ae <USART_voidInit+0x1c>
+ 79a:	91 81       	ldd	r25, Z+1	; 0x01
+ 79c:	91 11       	cpse	r25, r1
+ 79e:	07 c0       	rjmp	.+14     	; 0x7ae <USART_voidInit+0x1c>
+ 7a0:	83 e3       	ldi	r24, 0x33	; 51
+ 7a2:	90 e0       	ldi	r25, 0x00	; 0
+ 7a4:	90 93 1a 01 	sts	0x011A, r25	; 0x80011a <MYUBRR+0x1>
+ 7a8:	80 93 19 01 	sts	0x0119, r24	; 0x800119 <MYUBRR>
+ 7ac:	14 c0       	rjmp	.+40     	; 0x7d6 <USART_voidInit+0x44>
+ 7ae:	81 11       	cpse	r24, r1
+ 7b0:	0a c0       	rjmp	.+20     	; 0x7c6 <USART_voidInit+0x34>
+ 7b2:	91 81       	ldd	r25, Z+1	; 0x01
+ 7b4:	91 30       	cpi	r25, 0x01	; 1
+ 7b6:	39 f4       	brne	.+14     	; 0x7c6 <USART_voidInit+0x34>
+ 7b8:	87 e6       	ldi	r24, 0x67	; 103
+ 7ba:	90 e0       	ldi	r25, 0x00	; 0
+ 7bc:	90 93 1a 01 	sts	0x011A, r25	; 0x80011a <MYUBRR+0x1>
+ 7c0:	80 93 19 01 	sts	0x0119, r24	; 0x800119 <MYUBRR>
+ 7c4:	08 c0       	rjmp	.+16     	; 0x7d6 <USART_voidInit+0x44>
+ 7c6:	80 34       	cpi	r24, 0x40	; 64
+ 7c8:	31 f4       	brne	.+12     	; 0x7d6 <USART_voidInit+0x44>
+ 7ca:	8f e9       	ldi	r24, 0x9F	; 159
+ 7cc:	91 e0       	ldi	r25, 0x01	; 1
+ 7ce:	90 93 1a 01 	sts	0x011A, r25	; 0x80011a <MYUBRR+0x1>
+ 7d2:	80 93 19 01 	sts	0x0119, r24	; 0x800119 <MYUBRR>
+ 7d6:	80 91 19 01 	lds	r24, 0x0119	; 0x800119 <MYUBRR>
+ 7da:	89 b9       	out	0x09, r24	; 9
+ 7dc:	80 91 1a 01 	lds	r24, 0x011A	; 0x80011a <MYUBRR+0x1>
+ 7e0:	80 bd       	out	0x20, r24	; 32
+ 7e2:	82 81       	ldd	r24, Z+2	; 0x02
+ 7e4:	81 30       	cpi	r24, 0x01	; 1
+ 7e6:	21 f4       	brne	.+8      	; 0x7f0 <USART_voidInit+0x5e>
+ 7e8:	8a b1       	in	r24, 0x0a	; 10
+ 7ea:	88 60       	ori	r24, 0x08	; 8
+ 7ec:	8a b9       	out	0x0a, r24	; 10
+ 7ee:	05 c0       	rjmp	.+10     	; 0x7fa <USART_voidInit+0x68>
+ 7f0:	81 11       	cpse	r24, r1
+ 7f2:	03 c0       	rjmp	.+6      	; 0x7fa <USART_voidInit+0x68>
+ 7f4:	8a b1       	in	r24, 0x0a	; 10
+ 7f6:	87 7f       	andi	r24, 0xF7	; 247
+ 7f8:	8a b9       	out	0x0a, r24	; 10
+ 7fa:	83 81       	ldd	r24, Z+3	; 0x03
+ 7fc:	81 30       	cpi	r24, 0x01	; 1
+ 7fe:	21 f4       	brne	.+8      	; 0x808 <__DATA_REGION_LENGTH__+0x8>
+ 800:	8a b1       	in	r24, 0x0a	; 10
+ 802:	80 61       	ori	r24, 0x10	; 16
+ 804:	8a b9       	out	0x0a, r24	; 10
+ 806:	06 c0       	rjmp	.+12     	; 0x814 <__DATA_REGION_LENGTH__+0x14>
+ 808:	82 81       	ldd	r24, Z+2	; 0x02
+ 80a:	81 11       	cpse	r24, r1
+ 80c:	03 c0       	rjmp	.+6      	; 0x814 <__DATA_REGION_LENGTH__+0x14>
+ 80e:	8a b1       	in	r24, 0x0a	; 10
+ 810:	8f 7e       	andi	r24, 0xEF	; 239
+ 812:	8a b9       	out	0x0a, r24	; 10
+ 814:	84 81       	ldd	r24, Z+4	; 0x04
+ 816:	86 30       	cpi	r24, 0x06	; 6
+ 818:	21 f4       	brne	.+8      	; 0x822 <__DATA_REGION_LENGTH__+0x22>
+ 81a:	80 b5       	in	r24, 0x20	; 32
+ 81c:	86 68       	ori	r24, 0x86	; 134
+ 81e:	80 bd       	out	0x20, r24	; 32
+ 820:	05 c0       	rjmp	.+10     	; 0x82c <__DATA_REGION_LENGTH__+0x2c>
+ 822:	84 30       	cpi	r24, 0x04	; 4
+ 824:	19 f4       	brne	.+6      	; 0x82c <__DATA_REGION_LENGTH__+0x2c>
+ 826:	80 b5       	in	r24, 0x20	; 32
+ 828:	86 60       	ori	r24, 0x06	; 6
+ 82a:	80 bd       	out	0x20, r24	; 32
+ 82c:	81 85       	ldd	r24, Z+9	; 0x09
+ 82e:	80 38       	cpi	r24, 0x80	; 128
+ 830:	21 f4       	brne	.+8      	; 0x83a <__DATA_REGION_LENGTH__+0x3a>
+ 832:	8a b1       	in	r24, 0x0a	; 10
+ 834:	80 68       	ori	r24, 0x80	; 128
+ 836:	8a b9       	out	0x0a, r24	; 10
+ 838:	05 c0       	rjmp	.+10     	; 0x844 <__DATA_REGION_LENGTH__+0x44>
+ 83a:	81 11       	cpse	r24, r1
+ 83c:	03 c0       	rjmp	.+6      	; 0x844 <__DATA_REGION_LENGTH__+0x44>
+ 83e:	8a b1       	in	r24, 0x0a	; 10
+ 840:	8f 77       	andi	r24, 0x7F	; 127
+ 842:	8a b9       	out	0x0a, r24	; 10
+ 844:	80 85       	ldd	r24, Z+8	; 0x08
+ 846:	80 34       	cpi	r24, 0x40	; 64
+ 848:	21 f4       	brne	.+8      	; 0x852 <__DATA_REGION_LENGTH__+0x52>
+ 84a:	8a b1       	in	r24, 0x0a	; 10
+ 84c:	80 64       	ori	r24, 0x40	; 64
+ 84e:	8a b9       	out	0x0a, r24	; 10
+ 850:	08 95       	ret
+ 852:	81 11       	cpse	r24, r1
+ 854:	03 c0       	rjmp	.+6      	; 0x85c <__DATA_REGION_LENGTH__+0x5c>
+ 856:	8a b1       	in	r24, 0x0a	; 10
+ 858:	8f 7b       	andi	r24, 0xBF	; 191
+ 85a:	8a b9       	out	0x0a, r24	; 10
+ 85c:	08 95       	ret
+
+0000085e <USART_voidTransmit>:
+ 85e:	5d 9b       	sbis	0x0b, 5	; 11
+ 860:	fe cf       	rjmp	.-4      	; 0x85e <USART_voidTransmit>
+ 862:	8c b9       	out	0x0c, r24	; 12
+ 864:	08 95       	ret
+
+00000866 <USART_u8Receive>:
+ 866:	5f 9b       	sbis	0x0b, 7	; 11
+ 868:	fe cf       	rjmp	.-4      	; 0x866 <USART_u8Receive>
+ 86a:	8c b1       	in	r24, 0x0c	; 12
+ 86c:	08 95       	ret
+
+0000086e <USART_voidRecievePacket>:
+ 86e:	df 92       	push	r13
+ 870:	ef 92       	push	r14
+ 872:	ff 92       	push	r15
+ 874:	0f 93       	push	r16
+ 876:	1f 93       	push	r17
+ 878:	cf 93       	push	r28
+ 87a:	df 93       	push	r29
+ 87c:	8c 01       	movw	r16, r24
+ 87e:	d6 2e       	mov	r13, r22
+ 880:	d4 2f       	mov	r29, r20
+ 882:	0e 94 33 04 	call	0x866	; 0x866 <USART_u8Receive>
+ 886:	f8 01       	movw	r30, r16
+ 888:	80 83       	st	Z, r24
+ 88a:	c0 e0       	ldi	r28, 0x00	; 0
+ 88c:	08 c0       	rjmp	.+16     	; 0x89e <USART_voidRecievePacket+0x30>
+ 88e:	cf 5f       	subi	r28, 0xFF	; 255
+ 890:	78 01       	movw	r14, r16
+ 892:	ec 0e       	add	r14, r28
+ 894:	f1 1c       	adc	r15, r1
+ 896:	0e 94 33 04 	call	0x866	; 0x866 <USART_u8Receive>
+ 89a:	f7 01       	movw	r30, r14
+ 89c:	80 83       	st	Z, r24
+ 89e:	f8 01       	movw	r30, r16
+ 8a0:	ec 0f       	add	r30, r28
+ 8a2:	f1 1d       	adc	r31, r1
+ 8a4:	80 81       	ld	r24, Z
+ 8a6:	8d 17       	cp	r24, r29
+ 8a8:	41 f0       	breq	.+16     	; 0x8ba <USART_voidRecievePacket+0x4c>
+ 8aa:	2c 2f       	mov	r18, r28
+ 8ac:	30 e0       	ldi	r19, 0x00	; 0
+ 8ae:	8d 2d       	mov	r24, r13
+ 8b0:	90 e0       	ldi	r25, 0x00	; 0
+ 8b2:	01 97       	sbiw	r24, 0x01	; 1
+ 8b4:	28 17       	cp	r18, r24
+ 8b6:	39 07       	cpc	r19, r25
+ 8b8:	54 f3       	brlt	.-44     	; 0x88e <USART_voidRecievePacket+0x20>
+ 8ba:	10 82       	st	Z, r1
+ 8bc:	df 91       	pop	r29
+ 8be:	cf 91       	pop	r28
+ 8c0:	1f 91       	pop	r17
+ 8c2:	0f 91       	pop	r16
+ 8c4:	ff 90       	pop	r15
+ 8c6:	ef 90       	pop	r14
+ 8c8:	df 90       	pop	r13
+ 8ca:	08 95       	ret
+
+000008cc <USART_voidSendString>:
+ 8cc:	cf 92       	push	r12
+ 8ce:	df 92       	push	r13
+ 8d0:	ef 92       	push	r14
+ 8d2:	ff 92       	push	r15
+ 8d4:	cf 93       	push	r28
+ 8d6:	df 93       	push	r29
+ 8d8:	ec 01       	movw	r28, r24
+ 8da:	c1 2c       	mov	r12, r1
+ 8dc:	d1 2c       	mov	r13, r1
+ 8de:	76 01       	movw	r14, r12
+ 8e0:	07 c0       	rjmp	.+14     	; 0x8f0 <USART_voidSendString+0x24>
+ 8e2:	0e 94 2f 04 	call	0x85e	; 0x85e <USART_voidTransmit>
+ 8e6:	8f ef       	ldi	r24, 0xFF	; 255
+ 8e8:	c8 1a       	sub	r12, r24
+ 8ea:	d8 0a       	sbc	r13, r24
+ 8ec:	e8 0a       	sbc	r14, r24
+ 8ee:	f8 0a       	sbc	r15, r24
+ 8f0:	fe 01       	movw	r30, r28
+ 8f2:	ec 0d       	add	r30, r12
+ 8f4:	fd 1d       	adc	r31, r13
+ 8f6:	80 81       	ld	r24, Z
+ 8f8:	81 11       	cpse	r24, r1
+ 8fa:	f3 cf       	rjmp	.-26     	; 0x8e2 <USART_voidSendString+0x16>
+ 8fc:	0e 94 2f 04 	call	0x85e	; 0x85e <USART_voidTransmit>
+ 900:	df 91       	pop	r29
+ 902:	cf 91       	pop	r28
+ 904:	ff 90       	pop	r15
+ 906:	ef 90       	pop	r14
+ 908:	df 90       	pop	r13
+ 90a:	cf 90       	pop	r12
+ 90c:	08 95       	ret
+
+0000090e <__vector_13>:
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*RX ISR*/
+void __vector_13(void)
+{
+	ptr_To_RX_Int_fun();
+ 90e:	e0 91 1b 01 	lds	r30, 0x011B	; 0x80011b <ptr_To_RX_Int_fun>
+ 912:	f0 91 1c 01 	lds	r31, 0x011C	; 0x80011c <ptr_To_RX_Int_fun+0x1>
+ 916:	09 95       	icall
+ 918:	08 95       	ret
+
+0000091a <__vector_15>:
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*TX ISR*/
+void __vector_15(void)
+{
+	ptr_To_TX_Int_fun();
+ 91a:	e0 91 1d 01 	lds	r30, 0x011D	; 0x80011d <ptr_To_TX_Int_fun>
+ 91e:	f0 91 1e 01 	lds	r31, 0x011E	; 0x80011e <ptr_To_TX_Int_fun+0x1>
+ 922:	09 95       	icall
+ 924:	08 95       	ret
+
+00000926 <TERMINAL_init>:
+	EEPROM_voidInit();
+}
+
+void TERMINAL_init(void)
+{
+	USART_voidInit(&gstr_USART_Config);
+ 926:	80 e6       	ldi	r24, 0x60	; 96
+ 928:	90 e0       	ldi	r25, 0x00	; 0
+ 92a:	0e 94 c9 03 	call	0x792	; 0x792 <USART_voidInit>
+ 92e:	08 95       	ret
+
+00000930 <CARD_init>:
+
+extern struct gstr_USART_Config_t gstr_USART_Config;
+
+void CARD_init(void)
+{
+	Ru8_DDRD &= ~(0x04);
+ 930:	81 b3       	in	r24, 0x11	; 17
+ 932:	8b 7f       	andi	r24, 0xFB	; 251
+ 934:	81 bb       	out	0x11, r24	; 17
+	Ru8_MCUCR |= 0x03;
+ 936:	85 b7       	in	r24, 0x35	; 53
+ 938:	83 60       	ori	r24, 0x03	; 3
+ 93a:	85 bf       	out	0x35, r24	; 53
+	Ru8_SREG |= 0x80;
+ 93c:	8f b7       	in	r24, 0x3f	; 63
+ 93e:	80 68       	ori	r24, 0x80	; 128
+ 940:	8f bf       	out	0x3f, r24	; 63
+	Ru8_GICR |= 0x40; 
+ 942:	8b b7       	in	r24, 0x3b	; 59
+ 944:	80 64       	ori	r24, 0x40	; 64
+ 946:	8b bf       	out	0x3b, r24	; 59
+	
+	SPI_init();
+ 948:	0e 94 51 03 	call	0x6a2	; 0x6a2 <SPI_init>
+	TERMINAL_init();
+ 94c:	0e 94 93 04 	call	0x926	; 0x926 <TERMINAL_init>
+	EEPROM_voidInit();
+ 950:	0e 94 cc 00 	call	0x198	; 0x198 <EEPROM_voidInit>
+ 954:	08 95       	ret
+
+00000956 <TERMINAL_display>:
+	USART_voidInit(&gstr_USART_Config);
+}
+
+void TERMINAL_display(uint8_t* pu8_stream)
+{
+	if (pu8_stream != NULL_POINTER)
+ 956:	00 97       	sbiw	r24, 0x00	; 0
+ 958:	11 f0       	breq	.+4      	; 0x95e <TERMINAL_display+0x8>
+	{
+		USART_voidSendString(pu8_stream);
+ 95a:	0e 94 66 04 	call	0x8cc	; 0x8cc <USART_voidSendString>
+ 95e:	08 95       	ret
+
+00000960 <TERMINAL_command>:
+	}
+}
+
+void TERMINAL_command(uint8_t* pu8_buffer, uint8_t u8_arrSize)
+{
+	USART_voidRecievePacket(pu8_buffer, u8_arrSize, '\r');
+ 960:	4d e0       	ldi	r20, 0x0D	; 13
+ 962:	0e 94 37 04 	call	0x86e	; 0x86e <USART_voidRecievePacket>
+ 966:	08 95       	ret
+
+00000968 <CARD_voidCheckPanValidity>:
+}
+
+void CARD_voidCheckPanValidity(uint8_t* pu8_cardPAN, uint8_t* u8_panSize)
+{
+ 968:	0f 93       	push	r16
+ 96a:	1f 93       	push	r17
+ 96c:	cf 93       	push	r28
+ 96e:	df 93       	push	r29
+ 970:	ec 01       	movw	r28, r24
+ 972:	8b 01       	movw	r16, r22
+	uint8_t u8_arrIndex    = u8_INTIAL_VAL;
+	TERMINAL_display(PAN_REQ_STR);
+ 974:	84 e9       	ldi	r24, 0x94	; 148
+ 976:	90 e0       	ldi	r25, 0x00	; 0
+ 978:	0e 94 ab 04 	call	0x956	; 0x956 <TERMINAL_display>
+	TERMINAL_command(pu8_cardPAN, u8_PAN_MAX_SIZE);
+ 97c:	61 e1       	ldi	r22, 0x11	; 17
+ 97e:	ce 01       	movw	r24, r28
+ 980:	0e 94 b0 04 	call	0x960	; 0x960 <TERMINAL_command>
+	USART_voidRecievePacket(pu8_buffer, u8_arrSize, '\r');
+}
+
+void CARD_voidCheckPanValidity(uint8_t* pu8_cardPAN, uint8_t* u8_panSize)
+{
+	uint8_t u8_arrIndex    = u8_INTIAL_VAL;
+ 984:	80 e0       	ldi	r24, 0x00	; 0
+	TERMINAL_display(PAN_REQ_STR);
+	TERMINAL_command(pu8_cardPAN, u8_PAN_MAX_SIZE);
+	do
+	{
+		if((pu8_cardPAN[u8_arrIndex] >= '0') && (pu8_cardPAN[u8_arrIndex] <= '9'))
+ 986:	fe 01       	movw	r30, r28
+ 988:	e8 0f       	add	r30, r24
+ 98a:	f1 1d       	adc	r31, r1
+ 98c:	90 81       	ld	r25, Z
+ 98e:	90 53       	subi	r25, 0x30	; 48
+ 990:	9a 30       	cpi	r25, 0x0A	; 10
+ 992:	10 f4       	brcc	.+4      	; 0x998 <CARD_voidCheckPanValidity+0x30>
+		{
+			u8_arrIndex++;
+ 994:	8f 5f       	subi	r24, 0xFF	; 255
+ 996:	0d c0       	rjmp	.+26     	; 0x9b2 <CARD_voidCheckPanValidity+0x4a>
+		}
+		else
+		{
+			TERMINAL_display(WRONG_PAN_STR);
+ 998:	80 ea       	ldi	r24, 0xA0	; 160
+ 99a:	90 e0       	ldi	r25, 0x00	; 0
+ 99c:	0e 94 ab 04 	call	0x956	; 0x956 <TERMINAL_display>
+			TERMINAL_display(PAN_REQ_STR);
+ 9a0:	84 e9       	ldi	r24, 0x94	; 148
+ 9a2:	90 e0       	ldi	r25, 0x00	; 0
+ 9a4:	0e 94 ab 04 	call	0x956	; 0x956 <TERMINAL_display>
+			TERMINAL_command(pu8_cardPAN, u8_PAN_MAX_SIZE);
+ 9a8:	61 e1       	ldi	r22, 0x11	; 17
+ 9aa:	ce 01       	movw	r24, r28
+ 9ac:	0e 94 b0 04 	call	0x960	; 0x960 <TERMINAL_command>
+			u8_arrIndex = u8_INTIAL_VAL;
+ 9b0:	80 e0       	ldi	r24, 0x00	; 0
+		}
+		if(((pu8_cardPAN[u8_arrIndex] == NULL_CHAR)) && ((u8_arrIndex < u8_PAN_MIN_SIZE)))
+ 9b2:	fe 01       	movw	r30, r28
+ 9b4:	e8 0f       	add	r30, r24
+ 9b6:	f1 1d       	adc	r31, r1
+ 9b8:	90 81       	ld	r25, Z
+ 9ba:	91 11       	cpse	r25, r1
+ 9bc:	0f c0       	rjmp	.+30     	; 0x9dc <CARD_voidCheckPanValidity+0x74>
+ 9be:	89 30       	cpi	r24, 0x09	; 9
+ 9c0:	68 f4       	brcc	.+26     	; 0x9dc <CARD_voidCheckPanValidity+0x74>
+		{
+			TERMINAL_display(WRONG_PAN_STR);
+ 9c2:	80 ea       	ldi	r24, 0xA0	; 160
+ 9c4:	90 e0       	ldi	r25, 0x00	; 0
+ 9c6:	0e 94 ab 04 	call	0x956	; 0x956 <TERMINAL_display>
+			TERMINAL_display(PAN_REQ_STR);
+ 9ca:	84 e9       	ldi	r24, 0x94	; 148
+ 9cc:	90 e0       	ldi	r25, 0x00	; 0
+ 9ce:	0e 94 ab 04 	call	0x956	; 0x956 <TERMINAL_display>
+			TERMINAL_command(pu8_cardPAN, u8_PAN_MAX_SIZE);
+ 9d2:	61 e1       	ldi	r22, 0x11	; 17
+ 9d4:	ce 01       	movw	r24, r28
+ 9d6:	0e 94 b0 04 	call	0x960	; 0x960 <TERMINAL_command>
+			u8_arrIndex = u8_INTIAL_VAL;
+ 9da:	80 e0       	ldi	r24, 0x00	; 0
+		}
+	}while((pu8_cardPAN[u8_arrIndex] != NULL_CHAR));
+ 9dc:	fe 01       	movw	r30, r28
+ 9de:	e8 0f       	add	r30, r24
+ 9e0:	f1 1d       	adc	r31, r1
+ 9e2:	90 81       	ld	r25, Z
+ 9e4:	91 11       	cpse	r25, r1
+ 9e6:	cf cf       	rjmp	.-98     	; 0x986 <CARD_voidCheckPanValidity+0x1e>
+	
+	*(u8_panSize) = u8_arrIndex;
+ 9e8:	f8 01       	movw	r30, r16
+ 9ea:	80 83       	st	Z, r24
+}
+ 9ec:	df 91       	pop	r29
+ 9ee:	cf 91       	pop	r28
+ 9f0:	1f 91       	pop	r17
+ 9f2:	0f 91       	pop	r16
+ 9f4:	08 95       	ret
+
+000009f6 <CARD_voidCheckPinValidity>:
+
+void CARD_voidCheckPinValidity(uint8_t* pu8_cardPIN)
+{
+ 9f6:	cf 93       	push	r28
+ 9f8:	df 93       	push	r29
+ 9fa:	ec 01       	movw	r28, r24
+	uint8_t u8_arrIndex    = u8_INTIAL_VAL;
+	TERMINAL_display(PIN_REQ_STR);
+ 9fc:	8e ea       	ldi	r24, 0xAE	; 174
+ 9fe:	90 e0       	ldi	r25, 0x00	; 0
+ a00:	0e 94 ab 04 	call	0x956	; 0x956 <TERMINAL_display>
+	TERMINAL_command(pu8_cardPIN,u8_PIN_SIZE);
+ a04:	65 e0       	ldi	r22, 0x05	; 5
+ a06:	ce 01       	movw	r24, r28
+ a08:	0e 94 b0 04 	call	0x960	; 0x960 <TERMINAL_command>
+	*(u8_panSize) = u8_arrIndex;
+}
+
+void CARD_voidCheckPinValidity(uint8_t* pu8_cardPIN)
+{
+	uint8_t u8_arrIndex    = u8_INTIAL_VAL;
+ a0c:	80 e0       	ldi	r24, 0x00	; 0
+	TERMINAL_display(PIN_REQ_STR);
+	TERMINAL_command(pu8_cardPIN,u8_PIN_SIZE);
+	
+	do
+	{
+		if((pu8_cardPIN[u8_arrIndex] >= '0') && (pu8_cardPIN[u8_arrIndex] <= '9'))
+ a0e:	fe 01       	movw	r30, r28
+ a10:	e8 0f       	add	r30, r24
+ a12:	f1 1d       	adc	r31, r1
+ a14:	90 81       	ld	r25, Z
+ a16:	90 53       	subi	r25, 0x30	; 48
+ a18:	9a 30       	cpi	r25, 0x0A	; 10
+ a1a:	10 f4       	brcc	.+4      	; 0xa20 <CARD_voidCheckPinValidity+0x2a>
+		{
+			u8_arrIndex++ ;
+ a1c:	8f 5f       	subi	r24, 0xFF	; 255
+ a1e:	0d c0       	rjmp	.+26     	; 0xa3a <CARD_voidCheckPinValidity+0x44>
+		}
+		else
+		{
+			TERMINAL_display(WRONG_PIN_STR);
+ a20:	8a eb       	ldi	r24, 0xBA	; 186
+ a22:	90 e0       	ldi	r25, 0x00	; 0
+ a24:	0e 94 ab 04 	call	0x956	; 0x956 <TERMINAL_display>
+			TERMINAL_display(PIN_REQ_STR);
+ a28:	8e ea       	ldi	r24, 0xAE	; 174
+ a2a:	90 e0       	ldi	r25, 0x00	; 0
+ a2c:	0e 94 ab 04 	call	0x956	; 0x956 <TERMINAL_display>
+			TERMINAL_command(pu8_cardPIN,u8_PIN_SIZE);
+ a30:	65 e0       	ldi	r22, 0x05	; 5
+ a32:	ce 01       	movw	r24, r28
+ a34:	0e 94 b0 04 	call	0x960	; 0x960 <TERMINAL_command>
+			u8_arrIndex = u8_INTIAL_VAL;
+ a38:	80 e0       	ldi	r24, 0x00	; 0
+		}
+		if(((pu8_cardPIN[u8_arrIndex] == NULL_CHAR)) && ((u8_arrIndex != (u8_PIN_SIZE-1))))
+ a3a:	fe 01       	movw	r30, r28
+ a3c:	e8 0f       	add	r30, r24
+ a3e:	f1 1d       	adc	r31, r1
+ a40:	90 81       	ld	r25, Z
+ a42:	91 11       	cpse	r25, r1
+ a44:	0f c0       	rjmp	.+30     	; 0xa64 <CARD_voidCheckPinValidity+0x6e>
+ a46:	84 30       	cpi	r24, 0x04	; 4
+ a48:	69 f0       	breq	.+26     	; 0xa64 <CARD_voidCheckPinValidity+0x6e>
+		{
+			TERMINAL_display(WRONG_PIN_STR);
+ a4a:	8a eb       	ldi	r24, 0xBA	; 186
+ a4c:	90 e0       	ldi	r25, 0x00	; 0
+ a4e:	0e 94 ab 04 	call	0x956	; 0x956 <TERMINAL_display>
+			TERMINAL_display(PIN_REQ_STR);
+ a52:	8e ea       	ldi	r24, 0xAE	; 174
+ a54:	90 e0       	ldi	r25, 0x00	; 0
+ a56:	0e 94 ab 04 	call	0x956	; 0x956 <TERMINAL_display>
+			TERMINAL_command(pu8_cardPIN,u8_PIN_SIZE);
+ a5a:	65 e0       	ldi	r22, 0x05	; 5
+ a5c:	ce 01       	movw	r24, r28
+ a5e:	0e 94 b0 04 	call	0x960	; 0x960 <TERMINAL_command>
+			u8_arrIndex = u8_INTIAL_VAL;
+ a62:	80 e0       	ldi	r24, 0x00	; 0
+		}
+	}while((pu8_cardPIN[u8_arrIndex] != NULL_CHAR));
+ a64:	fe 01       	movw	r30, r28
+ a66:	e8 0f       	add	r30, r24
+ a68:	f1 1d       	adc	r31, r1
+ a6a:	90 81       	ld	r25, Z
+ a6c:	91 11       	cpse	r25, r1
+ a6e:	cf cf       	rjmp	.-98     	; 0xa0e <CARD_voidCheckPinValidity+0x18>
+}
+ a70:	df 91       	pop	r29
+ a72:	cf 91       	pop	r28
+ a74:	08 95       	ret
+
+00000a76 <CARD_u8ModeSelection>:
+
+uint8_t CARD_u8ModeSelection(void)
+{
+ a76:	cf 93       	push	r28
+ a78:	df 93       	push	r29
+	uint8_t u8_noChoice = TRUE;
+	uint8_t u8_choice   = u8_INTIAL_VAL;
+	uint8_t u8_mode     = u8_INTIAL_VAL;
+	
+	TERMINAL_display("Choose mode\r");
+ a7a:	88 ec       	ldi	r24, 0xC8	; 200
+ a7c:	90 e0       	ldi	r25, 0x00	; 0
+ a7e:	0e 94 ab 04 	call	0x956	; 0x956 <TERMINAL_display>
+	TERMINAL_display("1- Programming mode\r");
+ a82:	85 ed       	ldi	r24, 0xD5	; 213
+ a84:	90 e0       	ldi	r25, 0x00	; 0
+ a86:	0e 94 ab 04 	call	0x956	; 0x956 <TERMINAL_display>
+	TERMINAL_display("2- User mode\r");
+ a8a:	8a ee       	ldi	r24, 0xEA	; 234
+ a8c:	90 e0       	ldi	r25, 0x00	; 0
+ a8e:	0e 94 ab 04 	call	0x956	; 0x956 <TERMINAL_display>
+
+uint8_t CARD_u8ModeSelection(void)
+{
+	uint8_t u8_noChoice = TRUE;
+	uint8_t u8_choice   = u8_INTIAL_VAL;
+	uint8_t u8_mode     = u8_INTIAL_VAL;
+ a92:	d0 e0       	ldi	r29, 0x00	; 0
+	}while((pu8_cardPIN[u8_arrIndex] != NULL_CHAR));
+}
+
+uint8_t CARD_u8ModeSelection(void)
+{
+	uint8_t u8_noChoice = TRUE;
+ a94:	c1 e0       	ldi	r28, 0x01	; 1
+	
+	TERMINAL_display("Choose mode\r");
+	TERMINAL_display("1- Programming mode\r");
+	TERMINAL_display("2- User mode\r");
+	
+	while(u8_noChoice)
+ a96:	14 c0       	rjmp	.+40     	; 0xac0 <CARD_u8ModeSelection+0x4a>
+	{
+		TERMINAL_display("Choice: ");
+ a98:	88 ef       	ldi	r24, 0xF8	; 248
+ a9a:	90 e0       	ldi	r25, 0x00	; 0
+ a9c:	0e 94 ab 04 	call	0x956	; 0x956 <TERMINAL_display>
+		u8_choice = USART_u8Receive();
+ aa0:	0e 94 33 04 	call	0x866	; 0x866 <USART_u8Receive>
+		
+		if(u8_choice == PROGRAMMING_MODE)
+ aa4:	81 30       	cpi	r24, 0x01	; 1
+ aa6:	39 f0       	breq	.+14     	; 0xab6 <CARD_u8ModeSelection+0x40>
+		{
+			u8_noChoice = FALSE;
+			u8_mode = ADMIN;
+		}
+		else if (u8_choice == USER_MODE)
+ aa8:	82 30       	cpi	r24, 0x02	; 2
+ aaa:	41 f0       	breq	.+16     	; 0xabc <CARD_u8ModeSelection+0x46>
+			u8_noChoice = FALSE;
+			u8_mode = USER;
+		}
+		else
+		{
+			TERMINAL_display("WRONG CHOICE!!!\r");
+ aac:	81 e0       	ldi	r24, 0x01	; 1
+ aae:	91 e0       	ldi	r25, 0x01	; 1
+ ab0:	0e 94 ab 04 	call	0x956	; 0x956 <TERMINAL_display>
+ ab4:	05 c0       	rjmp	.+10     	; 0xac0 <CARD_u8ModeSelection+0x4a>
+		u8_choice = USART_u8Receive();
+		
+		if(u8_choice == PROGRAMMING_MODE)
+		{
+			u8_noChoice = FALSE;
+			u8_mode = ADMIN;
+ ab6:	d0 e0       	ldi	r29, 0x00	; 0
+		TERMINAL_display("Choice: ");
+		u8_choice = USART_u8Receive();
+		
+		if(u8_choice == PROGRAMMING_MODE)
+		{
+			u8_noChoice = FALSE;
+ ab8:	c0 e0       	ldi	r28, 0x00	; 0
+ aba:	02 c0       	rjmp	.+4      	; 0xac0 <CARD_u8ModeSelection+0x4a>
+			u8_mode = ADMIN;
+		}
+		else if (u8_choice == USER_MODE)
+		{
+			u8_noChoice = FALSE;
+			u8_mode = USER;
+ abc:	d1 e0       	ldi	r29, 0x01	; 1
+			u8_noChoice = FALSE;
+			u8_mode = ADMIN;
+		}
+		else if (u8_choice == USER_MODE)
+		{
+			u8_noChoice = FALSE;
+ abe:	c0 e0       	ldi	r28, 0x00	; 0
+	
+	TERMINAL_display("Choose mode\r");
+	TERMINAL_display("1- Programming mode\r");
+	TERMINAL_display("2- User mode\r");
+	
+	while(u8_noChoice)
+ ac0:	c1 11       	cpse	r28, r1
+ ac2:	ea cf       	rjmp	.-44     	; 0xa98 <CARD_u8ModeSelection+0x22>
+		{
+			TERMINAL_display("WRONG CHOICE!!!\r");
+		}
+	}
+	return u8_mode;
+ ac4:	8d 2f       	mov	r24, r29
+ ac6:	df 91       	pop	r29
+ ac8:	cf 91       	pop	r28
+ aca:	08 95       	ret
+
+00000acc <_exit>:
+ acc:	f8 94       	cli
+
+00000ace <__stop_program>:
+ ace:	ff cf       	rjmp	.-2      	; 0xace <__stop_program>
